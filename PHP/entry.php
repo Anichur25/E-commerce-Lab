@@ -154,7 +154,6 @@ $(document).ready(function() {
             '<input name="name[]" class="form-control col-md-6" type="text" required>' +
             '<button type = "button" class = "btn btn-danger btn_remove" id = "row' + counter +
             '">X</button>' +
-
             '</div>';
 
         $(tag).insertBefore('#formsub');
