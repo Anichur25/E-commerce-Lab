@@ -18,7 +18,6 @@
         $_SESSION['username'] = $user;
         $_SESSION['password'] = $pass;
         $_SESSION['id'] = $Password['ID'];
-       
         header("Location: ../PHP/welcome.php");
     }
     
@@ -66,7 +65,7 @@
                                         <i class="fa fa-user fa-2x"></i>
                                     </span>
                                 </div>
-                                <input type="text" name="user" class="form-control py-4" placeholder="User Name">
+                                <input type="text" name="user" class="form-control py-4" placeholder="User Name" required>
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -74,7 +73,7 @@
                                         <i class="fa fa-lock fa-2x"></i>
                                     </span>
                                 </div>
-                                <input type="password" name="pass" class="form-control py-4" placeholder="Password">
+                                <input type="password" name="pass" class="form-control py-4" placeholder="Password" required>
                             </div>
                             <div class="form-group">
                                 <button type="submit" name="send" class="btn btn-success btn-block">Login</button>

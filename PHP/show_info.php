@@ -20,7 +20,7 @@
                
              $connect = mysqli_connect('localhost','root','','labtask');
              $sql = "SELECT `FullName`, `NickName`, `Address`, `Website`, `DOB` FROM `entry` WHERE entry.ID = $userid";
-             $phnNum = "SELECT `phone` FROM `phone` WHERE phone.ID = 1";
+             $phnNum = "SELECT `phone` FROM `phone` WHERE phone.ID = $userid";
              $record = mysqli_query($connect,$sql);
              $data = mysqli_query($connect,$phnNum);
              $counter = 0;
