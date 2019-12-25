@@ -35,4 +35,46 @@ class CategoryController extends Controller
         Session :: put('message','Category added successfully !!');
         return Redirect :: to('/add-category');
     }
+
+    public function unactive_category($category_id)
+    {
+        
+        DB :: table('categories')
+           ->where('category_id',$category_id)
+           ->update(['publication_status'=>0]);
+        return Redirect :: to('/all-category');
+    }
+
+    public function active_category($category_id)
+    {
+        DB :: table('categories')
+              ->where('category_id',$category_id)
+              ->update(['publication_status'=>1]);
+            return Redirect :: to('/all-category');
+    }
+
+    public function edit_category($category_id)
+    {
+        $category_info = DB :: table('categories')
+                       ->where('category_id',$category_id)
+                       ->first();
+        return view('admin.edit_category')
+               ->with('category_info',$category_info);
+    }
+
+    public function update_category(Request $request,$category_id)
+    {
+       DB :: table('categories')
+        ->where('category_id',$category_id)
+        ->update(['category_name' =>$request->category_name,'category_description'=>$request->category_description]);
+        return Redirect :: to('/all-category');
+    }
+
+    public function delete_category($category_id)
+    {
+        DB :: table('categories')
+        ->where('category_id',$category_id)
+        ->delete();
+        return Redirect :: to('/all-category');
+    }
 }
