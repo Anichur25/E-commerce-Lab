@@ -357,9 +357,9 @@
                                     class="hidden-tablet">Products</span><span class="label label-important">New
                                 </span></a>
                             <ul>
-                                <li><a class="submenu" href="submenu.html"><i class="icon-file-alt"></i><span
+                                <li><a class="submenu" href="{{URL :: to('/add-product')}}"><i class="icon-file-alt"></i><span
                                             class="hidden-tablet">Add product</span></a></li>
-                                <li><a class="submenu" href="submenu2.html"><i class="icon-file-alt"></i><span
+                                <li><a class="submenu" href="{{URL :: to('/all-products')}}"><i class="icon-file-alt"></i><span
                                             class="hidden-tablet">All products</span></a></li>
                             </ul>
                         </li>

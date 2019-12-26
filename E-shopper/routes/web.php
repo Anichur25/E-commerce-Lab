@@ -37,3 +37,13 @@ Route :: get('/active-manufacture/{manufacture_id}','ManufactureController@activ
 Route :: get('/edit-manufacture/{manufacture_id}','ManufactureController@edit_manufacture');
 Route :: get('/delete-manufacture/{manufacture_id}','ManufactureController@delete_manufacture');
 Route :: post('/update-manufacture/{manufacture_id}','ManufactureController@update_manufacture');
+
+/** product related routes */
+
+Route :: get('/add-product','ProductController@add_product');
+Route :: post('/save-product','ProductController@save_product');
+Route :: get('/all-products','ProductController@all_products');
+Route :: get('/unactive-product/{product_id}','ProductController@unactive_product');
+Route :: get('/active-product/{product_id}','ProductController@active_product');
+Route :: get('/delete-product/{product_id}','ProductController@delete_product');
+Route :: get('/edit-product/{product_id}','ProductController@edit_product');
