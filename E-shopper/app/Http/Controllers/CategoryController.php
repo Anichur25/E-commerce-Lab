@@ -12,11 +12,13 @@ class CategoryController extends Controller
 {
     public function index()
     {
+        $this ->adminAuthCheck();
         return view('admin.add_category');
     }
 
     public function all_category()
     {
+        $this -> adminAuthCheck();
        $all_category_info =  DB :: table('categories')->get();
         
        return view('admin.all_category')
@@ -55,6 +57,7 @@ class CategoryController extends Controller
 
     public function edit_category($category_id)
     {
+        $this ->adminAuthCheck();
         $category_info = DB :: table('categories')
                        ->where('category_id',$category_id)
                        ->first();
@@ -76,5 +79,17 @@ class CategoryController extends Controller
         ->where('category_id',$category_id)
         ->delete();
         return Redirect :: to('/all-category');
+    }
+
+    public function adminAuthCheck()
+    {
+        $admin_id = Session :: get('admin_id');
+
+        if($admin_id)
+          return;
+        else
+        {
+            return Redirect :: to('/login') -> send();
+        }
     }
 }

@@ -14,7 +14,7 @@
 Route :: get('/logout','SuperAdminController@logout');
 Route :: get('/','HomeController@index');
 Route :: get('/login','AdminController@index');
-Route :: get('/dashboard','AdminController@show_dashboard');
+Route :: get('/dashboard','SuperAdminController@index');
 Route :: post('/admin-dashboard','AdminController@dashboard');
 
 /** category related routes */
