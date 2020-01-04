@@ -47,3 +47,17 @@ Route :: get('/unactive-product/{product_id}','ProductController@unactive_produc
 Route :: get('/active-product/{product_id}','ProductController@active_product');
 Route :: get('/delete-product/{product_id}','ProductController@delete_product');
 Route :: get('/edit-product/{product_id}','ProductController@edit_product');
+
+/** Slider routes */
+Route :: get('/add-slider','SliderController@add_slider');
+Route :: post('/save-slider','SliderController@save_slider');
+Route :: get('/all-slider','SliderController@all_slider');
+Route :: get('/unactive-slider/{slider_id}','SliderController@unactive_slider');
+Route :: get('/active-slider/{slider_id}','SliderController@active_slider');
+Route :: get('/delete-slider/{slider_id}','SliderController@delete_slider');
+
+/** category wise show products routes */
+
+Route :: get('/show_category_products/{category_id}','HomeController@show_products_category_wise');
+Route :: get('/show_manufacture_products/{manufacture_id}','HomeController@show_products_manufacture_wise');
+Route :: get('/view-product/{product_id}','HomeController@product_details_by_id');
