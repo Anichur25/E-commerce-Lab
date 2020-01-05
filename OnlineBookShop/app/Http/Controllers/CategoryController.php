@@ -27,7 +27,7 @@ class CategoryController extends Controller
 
     public function all_category()
     {
-        $categories = DB :: table('categories') -> get();
+        $categories = DB :: table('categories') -> paginate(10);
 
         return view('admin.all_category') -> with('all_category',$categories);
     }

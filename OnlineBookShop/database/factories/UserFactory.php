@@ -16,14 +16,12 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(App\Product::class, function (Faker $faker) {
+$factory->define(App\Category::class, function (Faker $faker) {
     return [
-        'category_id' => 14,
-        'book_name' => 'Java for beginners',
-        'book_author' => 'Peterson',
-        'book_price' => 330,
-        'book_image' => 'bookImage\MO61lYrcwZSttiynbYW4.jpg',
-        'book_description' => 'Nice one'
+        'category_name' => 'Programming',
+        'category_description' => 'Related in technology'
         
     ];
 });
+
+

@@ -43,7 +43,10 @@
             </td>
             
         </tr>
+        
         @endforeach
+       
     </tbody>
 </table>
+        {{ $all_books->links('vendor.pagination.bootstrap-4') }}
 @endsection

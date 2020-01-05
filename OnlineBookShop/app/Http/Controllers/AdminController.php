@@ -23,7 +23,7 @@ class AdminController extends Controller
 
     public function get_all_users()
     {
-        $users = DB :: table('users') -> get();
+        $users = DB :: table('users') -> paginate(10);
         return view('admin.all_users') -> with('users',$users);
     }
 }

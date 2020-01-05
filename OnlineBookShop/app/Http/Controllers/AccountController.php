@@ -40,7 +40,7 @@ class AccountController extends Controller
        if($user_name === 'admin' && $user_password === 'admin')
        {
           Session :: put('user_name','admin');
-          return Redirect :: to('/admin/all-products');
+          return Redirect :: to('/admin');
        }
        else
        {

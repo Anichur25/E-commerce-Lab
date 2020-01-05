@@ -55,7 +55,7 @@ class ProductController extends Controller
         $all_books = DB :: table('products')
                      ->join('categories','products.category_id','=','categories.category_id')
                      ->select('products.*','categories.category_name')
-                     ->get();
+                     ->paginate(10);
         return view('admin.all_products') -> with('all_books',$all_books);
     }
 
