@@ -27,6 +27,7 @@ class ProductController extends Controller
 
         if($image)
         {
+            
             $image_name = Str :: random(20);
             $extension = strtolower($image -> getClientOriginalExtension());
             $image_full_name = $image_name . '.' . $extension;
@@ -39,14 +40,14 @@ class ProductController extends Controller
                 $data['book_image'] = $image_url;
                 DB :: table('products')->insert($data);
                 Session :: put('save_message','Product saved successfully!!!');
-                return Redirect :: to('/add-product');
+                return Redirect :: to('/admin/all-products');
             }
         }
          
         $data['product_image'] = '';
             DB :: table('products')->insert($data);
             Session :: put('save_message','Product saved successfully!!!');
-        return Redirect :: to('/admin/add-product');
+        return Redirect :: to('/admin/all-products');
     }
 
     public function all_products()
@@ -118,5 +119,51 @@ class ProductController extends Controller
             return Redirect :: to('/admin/all-products');
         }
         
+    }
+
+    public function get_products()
+    {
+        $products = DB :: table('products')
+                     ->join('categories','products.category_id','=','categories.category_id')
+                     ->select('products.*')
+                     ->paginate(12);
+        return view('all_products_view',['products' => $products]);
+    }
+
+    public function asce_order_by_name()
+    {
+        $products = DB :: table('products')
+        ->join('categories','products.category_id','=','categories.category_id')
+        ->select('products.*')
+        ->orderBy('book_name','asc')
+        ->paginate(12);
+        return view('all_products_view',['products' => $products]);
+    }
+    public function asce_order_by_price()
+    {
+        $products = DB :: table('products')
+        ->join('categories','products.category_id','=','categories.category_id')
+        ->select('products.*')
+        ->orderBy('book_price','asc')
+        ->paginate(12);
+        return view('all_products_view',['products' => $products]);
+    }
+    public function desc_order_by_name()
+    {
+        $products = DB :: table('products')
+        ->join('categories','products.category_id','=','categories.category_id')
+        ->select('products.*')
+        ->orderBy('book_name','desc')
+        ->paginate(12);
+        return view('all_products_view',['products' => $products]);
+    }
+    public function desc_order_by_price()
+    {
+        $products = DB :: table('products')
+        ->join('categories','products.category_id','=','categories.category_id')
+        ->select('products.*')
+        ->orderBy('book_price','desc')
+        ->paginate(12);
+        return view('all_products_view',['products' => $products]);
     }
 }

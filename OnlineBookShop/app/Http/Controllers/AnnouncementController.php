@@ -21,7 +21,7 @@ class AnnouncementController extends Controller
          
          DB :: table('announcements') -> insert($data);
          Session :: put('save_message','Announcement saved successfully!!!');
-         return Redirect :: to('/admin/add-announcement');
+         return Redirect :: to('/admin/all-announcement');
     }
 
     public function all_announcement()

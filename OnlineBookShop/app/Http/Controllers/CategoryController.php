@@ -22,7 +22,7 @@ class CategoryController extends Controller
         
          DB :: table('categories') -> insert($data);
          Session :: put('save_message','Category added successfully!!!');
-         return Redirect :: to('/admin/add-category');
+         return Redirect :: to('/admin/all-category');
     }
 
     public function all_category()

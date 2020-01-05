@@ -24,7 +24,7 @@
             <td>{{ $announcement ->announcement_detail }}</td>
             <td>{{ $announcement -> publication_date }}</td>
             <td>
-                <a class="btn btn-danger" href="{{URL :: to('/delete-announcement/'.$announcement -> announce_id)}}">
+                <a class="btn btn-danger" href="{{URL :: to('/admin/delete-announcement/'.$announcement -> announce_id)}}">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>

@@ -35,7 +35,5 @@
             </div>
         </div>
     </div>
-      
-      <a href = "{{ URL :: to('/all-announcements') }}" class = "btn btn-primary">See All announcements</a>
     </div>
     @endsection

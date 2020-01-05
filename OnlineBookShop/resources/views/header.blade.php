@@ -45,7 +45,7 @@
                         </i>About</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{URL :: to('/products') }}" class="nav-link">
                         <i class="fab fa-product-hunt"></i>Products</a>
                 </li>
             </ul>

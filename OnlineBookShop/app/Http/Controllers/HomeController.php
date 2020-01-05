@@ -21,5 +21,13 @@ class HomeController extends Controller
   {
      return view('admin_panel');
   }
+
+  public function all_announcements()
+  {
+   $all_announcements = DB :: table('announcements')
+   ->orderBy('announce_id','desc')
+   ->get();
+return view('all_announcement',['all_announcements' => $all_announcements]);
+  }
   
 }

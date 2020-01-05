@@ -19,6 +19,7 @@ Route :: get('/admin/delete-user/{user_id}','AdminController@delete_user');
 /** Home routes */
 Route :: get('/','HomeController@index');
 Route :: get('/admin','HomeController@admin');
+Route :: get('/all-announcements','HomeController@all_announcements');
 
 /** Account routes */
 Route :: get('/signup','AccountController@signup');
@@ -50,3 +51,8 @@ Route :: get('/admin/all-products','ProductController@all_products');
 Route :: get('/admin/delete-product/{book_id}','ProductController@delete_product');
 Route :: get('/admin/edit-product/{book_id}','ProductController@edit_product');
 Route :: post('/admin/update-product/{book_id}','ProductController@update_product');
+Route :: get('/products','ProductController@get_products');
+Route :: get('/products-by-name-asc','ProductController@asce_order_by_name');
+Route :: get('/products-by-price-asc','ProductController@asce_order_by_price');
+Route :: get('/products-by-name-desc','ProductController@desc_order_by_name');
+Route :: get('/products-by-price-desc','ProductController@desc_order_by_price');
