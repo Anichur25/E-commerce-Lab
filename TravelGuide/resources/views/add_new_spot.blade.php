@@ -15,16 +15,16 @@
        {{ csrf_field() }}
       <div class="form-group">
         <label for="Spot_name">Spot Name</label>
-        <input type="text" class="form-control" name ="spot_name" aria-describedby="emailHelp" placeholder="Spot Name">
+        <input type="text" class="form-control" name ="spot_name" aria-describedby="emailHelp" placeholder="Spot Name"required>
        
       </div>
       <div class="form-group">
         <label for="spot_latitude">Spot latitude</label>
-        <input type="text" class="form-control" name ="spot_latitude" placeholder="Spot latitude">
+        <input type="text" class="form-control" name ="spot_latitude" placeholder="Spot latitude"required>
       </div>
       <div class="form-group">
         <label for="spot_latitude">Spot longitude</label>
-        <input type="text" class="form-control" name = "spot_longitude" placeholder="Spot longitude">
+        <input type="text" class="form-control" name = "spot_longitude" placeholder="Spot longitude"required>
       </div>
       
       <button type="submit" class="btn btn-primary">Add new spot</button>

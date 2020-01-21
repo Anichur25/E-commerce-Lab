@@ -7,10 +7,28 @@ use DB;
 
 class Place extends Controller
 {
-    public function show_place($place_name)
+    public function show_place($spot_id)
     {
-        $nearest_places = DB :: table('coordinates') -> get();
-        $nearest_restaurants = DB :: table('nearest_restaurants') -> get();
-        return view('place',['nearest_places' => $nearest_places,'nearest_restaurants' => $nearest_restaurants]);
+       
+        $places = DB :: table('spots_list')
+                 ->join('nearest_spots','spots_list.spot_id','=','nearest_spots.spot_id')
+                  ->where('spots_list.spot_id',$spot_id)
+                  ->get();
+
+        $restaurants = DB :: table('spots_list')
+                  ->join('nearest_restaurants','spots_list.spot_id','=','nearest_restaurants.spot_id')
+                   ->where('spots_list.spot_id',$spot_id)
+                   ->get();
+
+        $place_images = DB :: table('spots_list')
+                      ->join('spot_images','spots_list.spot_id','=','spot_images.spot_id')
+                      ->where('spots_list.spot_id',$spot_id)
+                      ->get();
+        $place_videos = DB :: table('spots_list')
+                        ->join('spot_videos','spots_list.spot_id','=','spot_videos.spot_id')
+                        ->where('spots_list.spot_id',$spot_id)
+                        ->get();              
+
+        return view('place',['nearest_places' => $places,'nearest_restaurants' => $restaurants,'images' => $place_images,'videos' => $place_videos]);
     }
 }

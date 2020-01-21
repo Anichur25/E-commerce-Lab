@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use Redirect;
 use Session;
+use Str;
 
 class SpotController extends Controller
 {
@@ -62,6 +63,55 @@ class SpotController extends Controller
         DB :: table('nearest_restaurants') -> insert($nearest_restaurant);
         Session :: put('message','Record save successfully!!!');
         return Redirect :: to('/add-nearest-restaurant');
+    }
+
+    public function add_new_slider_content()
+    {
+        $all_spots = DB :: table('spots_list') -> get();
+        return view('add_slider_content') -> with('all_spots',$all_spots);
+    }
+
+    public function save_slider_content(Request $request)
+    {
+        $slider_content = array();
+        $slider_content['place_name'] = $request -> place_name;
+        $slider_content['spot_id'] = $request -> ref_spot;
+        $image = $request ->file('spot_image');
+
+        if($image)
+        {
+            $image_name = Str :: random(20);
+            $extension = strtolower($image -> getClientOriginalExtension());
+            $image_full_name = $image_name . '.' . $extension;
+            $upload_path = 'slider_image/';
+            $image_url = $upload_path.$image_full_name;
+            $success = $image -> move($upload_path,$image_full_name);
+
+            if($success)
+            {
+                $slider_content['image_link'] = $image_url;
+                DB :: table('spot_images')->insert($slider_content);
+                Session :: put('message','Record save successfully!!!');
+                return Redirect :: to('/add-new-slider-content');
+            }
+        }
+    }
+
+    public function add_spot_video()
+    {
+        $all_spots = DB :: table('spots_list') -> get();
+        return view('add_spot_videos') -> with('all_spots',$all_spots);
+    }
+
+    public function save_spot_video(Request $request)
+    {
+        $video = array();
+        $video['video_link'] = $request -> video_link;
+        $video['spot_id'] = $request -> ref_spot;
+        
+        DB :: table('spot_videos') -> insert($video);
+        Session :: put('message','Record save successfully!!!');
+        return Redirect :: to('/add-spot-video');
     }
 
 }

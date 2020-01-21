@@ -78,17 +78,17 @@
             </a>
           </li>
           <li>
-            <a href="google_maps.html">
+          <a href="{{ URL :: to('/add-new-slider-content') }}">
               Add images
             </a>
           </li>
           <li>
-            <a href="google_maps.html">
+          <a href="{{ URL :: to('/add-spot-video') }}">
               Add review videos
             </a>
           </li>
           <li>
-            <a href="google_maps.html">
+          <a href="{{ URL :: to('/add-spot-virtual-tour') }}">
               Add virtual tour
             </a>
           </li>

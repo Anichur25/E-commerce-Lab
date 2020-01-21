@@ -14,16 +14,16 @@
       {{ csrf_field() }}
       <div class="form-group">
         <label for="Spot_name">Restaurant Name</label>
-        <input type="text" class="form-control" name = "restaurant_name" aria-describedby="emailHelp" placeholder="Restaurant Name">
+        <input type="text" class="form-control" name = "restaurant_name" aria-describedby="emailHelp" placeholder="Restaurant Name" required>
        
       </div>
       <div class="form-group">
         <label for="spot_latitude">Restaurant latitude</label>
-        <input type="text" class="form-control" name = "restaurant_latitude" placeholder="Restaurant latitude">
+        <input type="text" class="form-control" name = "restaurant_latitude" placeholder="Restaurant latitude"required>
       </div>
       <div class="form-group">
         <label for="spot_latitude">Restaurant longitude</label>
-        <input type="text" class="form-control" name = "restaurant_longitude" placeholder="Restaurant longitude">
+        <input type="text" class="form-control" name = "restaurant_longitude" placeholder="Restaurant longitude"required>
       </div>
 
       <div class="form-group">
