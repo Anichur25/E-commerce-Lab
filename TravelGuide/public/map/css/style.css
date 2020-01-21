@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.nearest_places,.nearest_restaurant,.place_location{
+    width: 1000px;
+    height: 300px;
+    background: green;
+    margin-left: 30px;
+   
+}
+
+.responsive
+{
+    margin-left: 140px;
+    margin-right: 50px;
+} 

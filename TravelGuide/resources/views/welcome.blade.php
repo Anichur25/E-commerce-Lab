@@ -1,60 +1,11 @@
-@include('Header')
-<html>
+@extends('header')
+@section('content')
 
-<head>
-    <style>
-    .wrapper {
-        margin: 0 auto;
-        width: 95%;
-    }
 
-    .carousel-item img {
-        width: 100%;
-        height: 400px;
-    }
+    <img class="responsive" src="{{ URL :: to('images/bangladesh_photo.jpg') }}">
 
-    .myclass {
-        position: relative;
-        float: left;
-        width: 380px;
-        height: 180px;
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
 
-    html {
-        scroll-behavior: smooth;
-    }
-    </style>
-</head>
-
-<body>
-    <div class="wrapper">
-        <div id="carousel-slider" class="carousel slide carousel-fade" data-ride="carousel" data-interval="2000">
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-slider" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-slider" data-slide-to="1"></li>
-                <li data-target="#carousel-slider" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active">
-                    <img class="d-block w-100"
-                        src="https://www.passporthealthglobal.com/wp-content/uploads/2019/11/vaccines-advice-bangladesh-img-uk.jpg"
-                        alt="First slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg"
-                        alt="Third slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg"
-                        alt="Third slide">
-                </div>
-            </div>
-        </div>
         <br>
-
         <div class="row">
             <div class="col-md-3">
                 <div class="card" style="width: 18rem;">
@@ -127,6 +78,5 @@
             </div>
         </div>
     </div>
-</body>
-
-</html>
+  
+@endsection
