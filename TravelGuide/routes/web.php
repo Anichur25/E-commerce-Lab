@@ -28,3 +28,4 @@ Route :: get('/add-new-slider-content','SpotController@add_new_slider_content');
 Route :: post('/save-slider-content','SpotController@save_slider_content');
 Route :: get('/add-spot-video','SpotController@add_spot_video');
 Route :: post('/save-spot-video','SpotController@save_spot_video');
+Route :: get('/virtual-tour','SpotController@virtual_tour');

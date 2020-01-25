@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Google Map</title>
     <link rel="stylesheet" href="{{asset('map/css/style.css')}}">
+    
 </head>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -21,6 +22,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 </script>
+<script src = "{{ asset('aframe-js/aframe-master.js') }}"></script>
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -65,6 +67,13 @@
                     <a class="dropdown-item" href="#">Tajhat Palace</a>
                 </div>
             </li>
+
+            @if(Session :: get('virtual_tour'))
+            <li class="nav-item active">
+                <a class="nav-link" href = "/virtual-tour">Virtual tour</a>
+            </li>
+            <?php Session :: put('virtual_tour',null) ?>
+            @endif 
         </ul>
         
        

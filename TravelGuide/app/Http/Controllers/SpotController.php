@@ -114,4 +114,9 @@ class SpotController extends Controller
         return Redirect :: to('/add-spot-video');
     }
 
+    public function virtual_tour()
+    {
+        return view('virtual_tour');
+    }
+
 }

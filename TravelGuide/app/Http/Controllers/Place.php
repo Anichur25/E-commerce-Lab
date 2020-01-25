@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Session;
 
 class Place extends Controller
 {
     public function show_place($spot_id)
     {
        
+        Session :: put('virtual_tour','active');
         $places = DB :: table('spots_list')
                  ->join('nearest_spots','spots_list.spot_id','=','nearest_spots.spot_id')
                   ->where('spots_list.spot_id',$spot_id)
