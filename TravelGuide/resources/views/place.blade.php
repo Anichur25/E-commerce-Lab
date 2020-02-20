@@ -2,7 +2,7 @@
 @extends('header')
 @section('content')
 <div class="container">
-    <h3 class="text-center">Images of Somapuri Vihara</h3>
+    <h3 class="text-center">Images of {{ $curr_place -> spot_name }}</h3>
 
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -155,15 +155,15 @@ $(function() {
     place_location = new GMaps({
 
         div: '.place_location',
-        lat: 25.0321976,
-        lng: 88.9691304
+        lat: {{ $curr_place -> spot_latitude }},
+        lng: {{ $curr_place -> spot_longitude }}
     });
 
     place_location.addMarker({
 
-        lat: 25.0321976,
-        lng: 88.9691304,
-        title: 'somapuri vihari'
+        lat: {{ $curr_place -> spot_longitude }},
+        lng: {{ $curr_place -> spot_longitude }},
+        title: '{{ $curr_place -> spot_name }}'
     });
 
     @foreach($nearest_places as $nearest_place)

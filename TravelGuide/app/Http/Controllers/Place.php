@@ -16,6 +16,9 @@ class Place extends Controller
                  ->join('nearest_spots','spots_list.spot_id','=','nearest_spots.spot_id')
                   ->where('spots_list.spot_id',$spot_id)
                   ->get();
+        $current_place = DB :: table('spots_list')
+                         ->where('spot_id',$spot_id)
+                         ->first();
 
         $restaurants = DB :: table('spots_list')
                   ->join('nearest_restaurants','spots_list.spot_id','=','nearest_restaurants.spot_id')
@@ -31,6 +34,6 @@ class Place extends Controller
                         ->where('spots_list.spot_id',$spot_id)
                         ->get();              
 
-        return view('place',['nearest_places' => $places,'nearest_restaurants' => $restaurants,'images' => $place_images,'videos' => $place_videos]);
+        return view('place',['nearest_places' => $places,'nearest_restaurants' => $restaurants,'images' => $place_images,'videos' => $place_videos,'curr_place' => $current_place]);
     }
 }

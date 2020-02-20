@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,31 +45,20 @@
                     Spot List
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="./spot/somapuri vihara">Somapuri Vihara</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Shait Gumboj Mosque</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Varindra Research Museum</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Natore Rajbari</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Cox's Bazar Sea Beach</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Saint Martin Island</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Rajshahi T-bath</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Khania Dighi Mosque</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Shrine of Hazrat Shah Jalal</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Tajhat Palace</a>
+                    <?php
+                      $spots = DB :: table('spots_list') -> get()?>
+
+                      @foreach($spots as $spot)
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{{ URL :: to('show-place/'.$spot -> spot_id) }}">{{ $spot -> spot_name }}</a>
+                      @endforeach
+            
                 </div>
             </li>
 
             @if(Session :: get('virtual_tour'))
             <li class="nav-item active">
-                <a class="nav-link" href = "/virtual-tour">Virtual tour</a>
+                <a class="nav-link" href = "{{URL :: to('/virtual-tour/'.$curr_place -> spot_id)}}">Virtual tour</a>
             </li>
             <?php Session :: put('virtual_tour',null) ?>
             @endif 
