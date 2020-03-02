@@ -101,7 +101,7 @@
                                 <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                                 <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                                 <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                <li><a href="{{ URL :: to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                                 <li><a href="{{URL :: to('/login')}}"><i class="fa fa-lock"></i> Login</a></li>
                             </ul>
                         </div>
@@ -127,13 +127,13 @@
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a href="index.html" class="active">Home</a></li>
+                                <li><a href="{{ URL :: to('/') }}" class="active">Home</a></li>
                                 <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Products</a></li>
                                         <li><a href="product-details.html">Product Details</a></li>
                                         <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="cart.html">Cart</a></li>
+                                        <li><a href="{{ URL :: to('/show-cart')}}">Cart</a></li>
                                         <li><a href="login.html">Login</a></li>
                                     </ul>
                                 </li>
@@ -160,6 +160,7 @@
     </header>
     <!--/header-->
 
+    @if(Session :: get('hasSlider') == null)
     <section id="slider">
         <!--slider-->
         <div class="container">
@@ -191,8 +192,10 @@
             </div>
         </div>
     </section>
+    @endif 
     <!--/slider-->
 
+    @if(Session :: get('hasSidebar') != null)
     <section>
         <div class="container">
             <div class="row">
@@ -263,13 +266,18 @@
                 <div class="col-sm-9 padding-right">
                     <div class="features_items">
                         <!--features_items-->
-                        <h2 class="title text-center">Features Items</h2>
+                        @if(Session ::get('showFeatureItem'))
+                            <h2 class="title text-center">Features Items</h2>
+                        @endif 
                         @yield('content');
 
                     </div>
                 </div>
             </div>
     </section>
+    @else
+    @yield('content')
+    @endif 
 
     <footer id="footer">
         <!--Footer-->

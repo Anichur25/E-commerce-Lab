@@ -8,7 +8,10 @@
     </li>
     <li><a href="#">Tables</a></li>
 </ul>
-
+@if(Session :: get('message'))
+<p class = "alert-success">{{ Session :: get('message') }}</p>
+<?php Session :: put('message',null); ?>
+@endif
 <div class="row-fluid sortable">
     <div class="box span12">
         <div class="box-header" data-original-title>

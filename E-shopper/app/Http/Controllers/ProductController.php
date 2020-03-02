@@ -47,12 +47,14 @@ class ProductController extends Controller
             {
                 $data['product_image'] = $image_url;
                 DB :: table('products')->insert($data);
+                Session :: put('message','Product added successfully');
                 return Redirect :: to('/add-product');
             }
         }
          
         $data['product_image'] = '';
             DB :: table('products')->insert($data);
+            Session :: put('message','Product added successfully');
             return Redirect :: to('/add-product');
     }
 
@@ -71,6 +73,7 @@ class ProductController extends Controller
         DB :: table('products')
         ->where('product_id',$product_id)
         ->update(['publication_status' => 0]);
+        Session :: put('message','product deactived successfully');
         return Redirect :: to('/all-products');
     }
 
@@ -79,6 +82,7 @@ class ProductController extends Controller
         DB :: table('products')
         ->where('product_id',$product_id)
         ->update(['publication_status' => 1]);
+        Session :: put('message','product actived successfully');
         return Redirect :: to('/all-products');
     }
 
@@ -87,6 +91,7 @@ class ProductController extends Controller
         DB :: table('products')
         ->where('product_id',$product_id)
         ->delete();
+        Session :: put('message','product deleted successfully');
         return Redirect :: to('/all-products');
     }
 

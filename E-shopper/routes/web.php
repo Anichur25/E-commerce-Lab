@@ -61,3 +61,9 @@ Route :: get('/delete-slider/{slider_id}','SliderController@delete_slider');
 Route :: get('/show_category_products/{category_id}','HomeController@show_products_category_wise');
 Route :: get('/show_manufacture_products/{manufacture_id}','HomeController@show_products_manufacture_wise');
 Route :: get('/view-product/{product_id}','HomeController@product_details_by_id');
+
+/** cart routes */
+Route :: post('/add-to-cart','CartController@add_to_cart');
+Route :: get('/show-cart','CartController@show_cart');
+Route :: get('/delete-cart-item/{item_id}','CartController@delete_cart_item');
+Route :: post('/update-cart','CartController@update_cart');
