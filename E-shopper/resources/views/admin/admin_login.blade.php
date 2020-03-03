@@ -75,21 +75,21 @@
 					?>
 					</p>
                     <h2>Login to your account</h2>
-                    <form class="form-horizontal" action="{{url('/admin-dashboard')}}" method="post">
+                    <form class="form-horizontal" action="{{url('/check-auth')}}" method="post">
 
 					     {{ csrf_field()}}
                         <fieldset>
 
                             <div class="input-prepend" title="Username">
                                 <span class="add-on"><i class="halflings-icon user"></i></span>
-                                <input class="input-large span10" name="admin_email" id = "username" type="text"
+                                <input class="input-large span10" name="email" id = "username" type="text"
                                     placeholder="Enter email" />
                             </div>
                             <div class="clearfix"></div>
 
                             <div class="input-prepend" title="Password">
                                 <span class="add-on"><i class="halflings-icon lock"></i></span>
-                                <input class="input-large span10" name="admin_password" id = "password" type="password"
+                                <input class="input-large span10" name="password" id = "password" type="password"
                                     placeholder="Enter password"/>
                             </div>
                 

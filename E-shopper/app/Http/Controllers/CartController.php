@@ -62,6 +62,9 @@ class CartController extends Controller
         $data['attributes']['image'] = $product_info -> product_image;
         Cart :: remove($id);
         Cart :: add($data);
+        if(Session :: get('shipping_id') == NULL)
         return Redirect :: to('/show-cart');
+        else 
+        return Redirect :: to('/payment');
     }
 }

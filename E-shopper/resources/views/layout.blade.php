@@ -100,9 +100,29 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                                 <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                                <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                                <li><a href="{{ URL :: to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                                <li><a href="{{URL :: to('/login')}}"><i class="fa fa-lock"></i> Login</a></li>
+                                <li><a href="{{ URL :: to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a>
+                                </li>
+                                @if(Session :: get('user_id'))
+                                <li class="dropdown">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="halflings-icon white user"></i>
+                                        {{Session :: get('user_name')}}
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        @if(Session :: get('user_type') == "A")
+                                        <li><a href="{{URL :: to('/dashboard')}}"><i class="halflings-icon off"></i>
+                                                Admin Panel</a></li>
+                                        @endif
+                                        <li><a href="{{URL :: to('/logout')}}"><i class="halflings-icon off"></i>
+                                                Logout</a></li>
+                                    </ul>
+                                </li>
+                                @else 
+                                 <li><a href="{{ URL :: to('/login-check') }}"><i class="fa fa-crosshairs"></i>
+                                        Checkout</a></li>
+                                 <li><a href = "{{ URL :: to('/login') }}"><i class = "fa fa-lock"></i>Login</a></li>
+                                @endif 
                             </ul>
                         </div>
                     </div>
@@ -132,9 +152,12 @@
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Products</a></li>
                                         <li><a href="product-details.html">Product Details</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
+                                        @if(Session :: get('user_name'))
+                                        <li><a href="{{ URL :: to('/checkout') }}">Checkout</a></li>
+                                        @else
+                                        <li><a href="{{ URL :: to('/login-check') }}">Checkout</a></li>
+                                        @endif
                                         <li><a href="{{ URL :: to('/show-cart')}}">Cart</a></li>
-                                        <li><a href="login.html">Login</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
@@ -168,18 +191,19 @@
                 <div class="col-sm-12">
                     <div id="slider-carousel" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
-						@foreach( $all_slider as $slider )
-                        <li data-target="#carousel-example-generic" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
-                        @endforeach
+                            @foreach( $all_slider as $slider )
+                            <li data-target="#carousel-example-generic" data-slide-to="{{ $loop->index }}"
+                                class="{{ $loop->first ? 'active' : '' }}"></li>
+                            @endforeach
                         </ol>
-                  
+
                         <div class="carousel-inner" role="listbox">
-                    @foreach( $all_slider as $slider )
-                        <div class="item {{ $loop->first ? ' active' : '' }}" >
-                            <img src="{{ $slider->slider_image }}"  style="width: 100%; height: 300px;">
+                            @foreach( $all_slider as $slider )
+                            <div class="item {{ $loop->first ? ' active' : '' }}">
+                                <img src="{{ $slider->slider_image }}" style="width: 100%; height: 300px;">
+                            </div>
+                            @endforeach
                         </div>
-                    @endforeach
-                </div>
                         <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
                             <i class="fa fa-angle-left"></i>
                         </a>
@@ -192,7 +216,7 @@
             </div>
         </div>
     </section>
-    @endif 
+    @endif
     <!--/slider-->
 
     @if(Session :: get('hasSidebar') != null)
@@ -208,7 +232,9 @@
 
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="{{URL :: to('/show_category_products/'.$category -> category_id)}}">{{ $category->category_name }}</a></h4>
+                                    <h4 class="panel-title"><a
+                                            href="{{URL :: to('/show_category_products/'.$category -> category_id)}}">{{ $category->category_name }}</a>
+                                    </h4>
                                 </div>
                             </div>
 
@@ -231,7 +257,8 @@
 													->where('manufacture_name',$manufacture->manufacture_name)
 													->count();
 										?>
-                                    <li><a href="{{('/show_manufacture_products/'.$manufacture -> manufacture_id)}}"> <span
+                                    <li><a href="{{('/show_manufacture_products/'.$manufacture -> manufacture_id)}}">
+                                            <span
                                                 class="pull-right">({{ $items }})</span>{{ $manufacture -> manufacture_name }}</a>
                                     </li>
                                     <?php }?>
@@ -267,8 +294,8 @@
                     <div class="features_items">
                         <!--features_items-->
                         @if(Session ::get('showFeatureItem'))
-                            <h2 class="title text-center">Features Items</h2>
-                        @endif 
+                        <h2 class="title text-center">Features Items</h2>
+                        @endif
                         @yield('content');
 
                     </div>
@@ -277,7 +304,7 @@
     </section>
     @else
     @yield('content')
-    @endif 
+    @endif
 
     <footer id="footer">
         <!--Footer-->

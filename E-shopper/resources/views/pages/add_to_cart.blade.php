@@ -125,7 +125,12 @@
 							<li>Total <span>{{ Cart::getTotal() }}.00</span></li>
 						</ul>
 							<a class="btn btn-default update" href="">Update</a>
-							<a class="btn btn-default check_out" href="">Check Out</a>
+
+							@if(Session :: get('user_id') == null)
+							<a class="btn btn-default check_out" href="{{ URL :: to('/login-check') }}">Check Out</a>
+							@else
+							<a class="btn btn-default check_out" href="{{ URL :: to('/checkout') }}">Check Out</a>
+							@endif 
 					</div>
 				</div>
 			</div>

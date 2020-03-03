@@ -11,11 +11,11 @@
 |
 */
 //admin related routes
-Route :: get('/logout','SuperAdminController@logout');
+Route :: get('/logout','AuthController@logout');
 Route :: get('/','HomeController@index');
-Route :: get('/login','AdminController@index');
-Route :: get('/dashboard','SuperAdminController@index');
-Route :: post('/admin-dashboard','AdminController@dashboard');
+Route :: get('/login','AuthController@login');
+Route :: get('/dashboard','AuthController@show_dashboard');
+Route :: post('/check-auth','AuthController@check_auth');
 
 /** category related routes */
 
@@ -67,3 +67,15 @@ Route :: post('/add-to-cart','CartController@add_to_cart');
 Route :: get('/show-cart','CartController@show_cart');
 Route :: get('/delete-cart-item/{item_id}','CartController@delete_cart_item');
 Route :: post('/update-cart','CartController@update_cart');
+
+/** Checkout routes */
+Route :: get('/login-check','CheckoutController@login_check');
+Route :: post('/customer-registration','CheckoutController@customer_registration');
+Route :: get('/checkout','CheckoutController@checkout');
+Route :: post('/checkout-login','AuthController@checkout_login');
+Route :: post('/save-shipping-details','CheckoutController@save_shipping_details');
+Route :: get('/payment','CheckoutController@payment');
+Route :: post('/complete-payment','CheckoutController@payment_gateway');
+Route :: get('/handcash','CheckoutController@handcash');
+Route :: get('/manage-order','CheckoutController@manage_order');
+Route :: get('/view-order/{order_id}','CheckoutController@view_order');

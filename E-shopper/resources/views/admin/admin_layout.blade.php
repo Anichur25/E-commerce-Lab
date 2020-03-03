@@ -314,7 +314,7 @@
                         <li class="dropdown">
                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                                 <i class="halflings-icon white user"></i>
-                                  {{Session :: get('admin_name')}}
+                                  {{Session :: get('user_name')}}
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
@@ -377,8 +377,8 @@
                         </li>
                         
                         
-                        <li><a href="chart.html"><i class="icon-list-alt"></i><span class="hidden-tablet">
-                                    Social Link</span></a></li>
+                        <li><a href="{{ URL :: to('/manage-order') }}"><i class="icon-list-alt"></i><span class="hidden-tablet">
+                                    Manager Order</span></a></li>
                         <li><a href="typography.html"><i class="icon-font"></i><span class="hidden-tablet">
                                     Shop Name</span></a></li>
                         <li><a href="gallery.html"><i class="icon-picture"></i><span class="hidden-tablet">
