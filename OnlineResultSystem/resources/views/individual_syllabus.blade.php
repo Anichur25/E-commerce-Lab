@@ -3,8 +3,8 @@
 <div class="box">
     <div class="box-content">
        <p><strong>Syllabus Name : </strong> {{ $syllabus[0] -> syllabus_name }}</p>
-       <p><strong>Session : </strong> {{ $syllabus[0] -> session_id }}</p>
-       <p><strong>Year : </strong> {{ $syllabus[0] -> year}}</p>
+       <p><strong>Session : </strong> {{ $syllabus[0] -> session }}</p>
+       <p><strong>Year : </strong> {{ $syllabus[0] -> part}}</p>
        <p><strong>Semester : </strong> {{ $syllabus[0] -> semester }}</p>
        <p><strong>Courses : </strong></p>
        <table class="table table-striped table-bordered bootstrap-datatable">

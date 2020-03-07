@@ -20,7 +20,7 @@
                 <thead>
                     <tr>
                         <th>Syllabus Name</th>
-                        <th>Year</th>
+                        <th>Part</th>
                         <th>Semester</th>
                         <th>Session</th>
                         <th>Actions</th>
@@ -31,9 +31,9 @@
                 <tbody>
                     <tr>
                         <td class = "center">{{ $syllabus -> syllabus_name }}</td>
-                        <td class="center">{{ $syllabus -> year }}</td>
+                        <td class="center">{{ $syllabus -> part }}</td>
                         <td class = "center"> {{ $syllabus -> semester }}</td>
-                        <td class = "center"> {{ $syllabus -> session_id }}</td>
+                        <td class = "center"> {{ $syllabus -> session }}</td>
                         <td class="center">
                             <a class="btn btn-info" href="{{URL :: to('/syllabus-detail/'.$syllabus ->syllabus_id)}}">
                                 Details

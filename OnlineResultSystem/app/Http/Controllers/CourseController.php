@@ -24,7 +24,7 @@ class CourseController extends Controller
         $course['course_type'] = $request -> course_type;
 
          DB :: table('courses') -> insert($course);
-         return Redirect :: to('/');
+         return Redirect :: to('/add-course');
     }
 
     public function view_courses()

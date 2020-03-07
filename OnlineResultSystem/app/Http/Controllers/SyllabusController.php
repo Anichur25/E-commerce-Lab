@@ -20,9 +20,9 @@ class SyllabusController extends Controller
     {
         $courses = $request -> courses;
         $syllabus['syllabus_name'] = $request -> syllabus_title;
-        $syllabus['session_id'] = $request -> session;
+        $syllabus['session'] = $request -> session;
         $syllabus['semester'] = $request -> semester;
-        $syllabus['year'] = $request -> year;
+        $syllabus['part'] = $request -> part;
         $syllabus_id = DB :: table('syllabuses') -> insertGetId($syllabus);
 
         foreach($courses as $course)

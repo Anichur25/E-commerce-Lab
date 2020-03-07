@@ -20,15 +20,15 @@
 
                 <div class="row">
                     <div class="col-md-2">
-                        <label class="text-dark"><strong>Year</strong></label>
+                        <label class="text-dark"><strong>Part</strong></label>
                     </div>
                     <div class="col-md-9">
                         <div class="form-group">
-                            <select class="student_info_item" name="year" required>
-                                <option value="First">First Year</option>
-                                <option value="Second">Second Year</option>
-                                <option value="Third">Third Year</option>
-                                <option value="Fourth Year">Fourth Year</option>
+                            <select class="student_info_item" name="part" required>
+                                <option value=1>Part-I</option>
+                                <option value=2>Part-II</option>
+                                <option value=3>Part-III</option>
+                                <option value=4>Part-IV</option>
                             </select>
                         </div>
                     </div>
@@ -40,8 +40,8 @@
                     <div class="col-md-9">
                         <div class="form-group">
                             <select class="student_info_item" name="semester" required>
-                                <option value="ODD">Odd Semester</option>
-                                <option value="EVEN">Even Semester</option>
+                                <option value="odd">Odd Semester</option>
+                                <option value="even">Even Semester</option>
                             </select>
                         </div>
                     </div>

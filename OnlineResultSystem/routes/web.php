@@ -47,5 +47,5 @@ Route :: get('/delete-syllabus/{syllabus_id}','SyllabusController@delete_syllabu
 Route :: get('/add-marks','MarksController@get_academic_info');
 Route :: post('/add-marks-info','MarksController@get_info');
 Route :: get('/add-new-student-mark','MarksController@add_new_stu_mark');
-Route :: post('/add-new-student-mark','MarksController@save_student_mark');
-Route :: post('/viewst','MarksController@faltu');
+Route :: post('/save-marks','MarksController@save_student_mark');
+Route :: get('/view-all-marks','MarksController@view_all_marks');
