@@ -1,18 +1,14 @@
 @extends('home')
 @section('contents')
 
-<ul class="breadcrumb">
-    <li>
-        <i class="icon-home"></i>
-        <a href="index.html">Home</a>
-        <i class="icon-angle-right"></i>
-    </li>
-    
-</ul>
 @if(Session :: get('message'))
 <p class = "alert-success">{{ Session :: get('message') }}</p>
 <?php Session :: put('message',NULL); ?>
 @endif
+@if(Session :: get('message-update'))
+ <p class = 'alert alert-success'>{{ Session :: get('message-update') }}</p>
+ <?php Session :: put('message-update',NULL)?>
+ @endif
 <div class="row-fluid sortable">
     <div class="box span12">
         <div class="box-header" data-original-title>
@@ -20,7 +16,7 @@
             
         </div>
         <div class="box-content">
-            <table class="table table-striped table-bordered bootstrap-datatable datatable">
+            <table class="table table-striped table-bordered bootstrap-datatable">
                 <thead>
                     <tr>
                         <th>Student ID</th>
@@ -41,6 +37,10 @@
                         <td class="center">
                             <a class="btn btn-info" href="{{URL :: to('/student-detail/'.$student ->student_id)}}">
                                 Details
+                            </a>
+                           
+                            <a class="btn btn-danger" href="{{URL :: to('/delete-student/'.$student ->student_id)}}">
+                                Delete
                             </a>
                            
                         </td>

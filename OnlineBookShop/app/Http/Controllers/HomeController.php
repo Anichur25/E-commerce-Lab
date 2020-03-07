@@ -26,7 +26,7 @@ class HomeController extends Controller
   {
    $all_announcements = DB :: table('announcements')
    ->orderBy('announce_id','desc')
-   ->get();
+   ->paginate(10);
 return view('all_announcement',['all_announcements' => $all_announcements]);
   }
   

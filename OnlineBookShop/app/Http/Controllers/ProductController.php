@@ -166,4 +166,37 @@ class ProductController extends Controller
         ->paginate(12);
         return view('all_products_view',['products' => $products]);
     }
+    public function get_product_by_keyword(Request $request)
+    {
+        $keyword = $request -> product_name;
+        Session :: put('keyword',$keyword);
+        return Redirect :: to('/products-by-keyword');
+    }
+
+    public function get_single_product($product_id)
+    {
+        $product = DB :: table('products')
+                   ->join('categories','categories.category_id','=','products.category_id')
+                   ->where('book_id',$product_id)
+                   ->select('products.*','categories.category_name')
+                   ->first();
+        $related_items = DB :: table('products')
+                        ->where('category_id',$product -> category_id)
+                        ->limit(4)
+                        ->get();
+        return view('single_product',['book' => $product,'related_items' => $related_items]);
+    }
+
+    public function helper_function()
+    {
+      
+        $keyword = Session :: get('keyword');
+        $products = DB :: table('products')
+        ->join('categories','products.category_id','=','categories.category_id')
+        ->where('book_name','like','%'.$keyword.'%')
+        ->orWhere('book_author','like','%'.$keyword.'%')
+        ->orWhere('categories.category_name','like','%'.$keyword.'%')
+        ->paginate(12);
+        return view('all_products_view',['products' => $products]);
+    }
 }

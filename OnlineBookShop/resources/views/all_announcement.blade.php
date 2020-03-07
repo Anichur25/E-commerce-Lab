@@ -1,12 +1,12 @@
 @extends('header')
 @section('body')
+<br>
 <div class="container-fluid">
-
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-8">
             <div class="container">
                 <!-- creating table -->
-                <table class="table mt-3">
+                <table class="table table-dark table-striped">
                     <thead class="table-dark">
                         <tr>
                             <th>
@@ -32,6 +32,8 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                {{ $all_announcements -> links('vendor.pagination.bootstrap-4') }}
             </div>
         </div>
     </div>

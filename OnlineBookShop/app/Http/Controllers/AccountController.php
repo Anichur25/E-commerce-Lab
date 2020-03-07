@@ -29,6 +29,8 @@ class AccountController extends Controller
  
     public function login()
     {
+       if(Session :: get('user_name'))
+       return Redirect :: to('/');
        return view('login');
     }
  
@@ -57,6 +59,7 @@ class AccountController extends Controller
             {
                Session :: put('user_name',$user_name);
                Session :: put('user_id',$user -> user_id);
+               Session :: put('user_mail',$user -> email_address);
                return Redirect :: to('/');
             }
        }

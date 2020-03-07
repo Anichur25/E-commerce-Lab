@@ -2,11 +2,11 @@
 @section('body')
 <div class="container-fluid">
 
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-8">
             <div class="container">
                 <!-- creating table -->
-                <table class="table mt-3">
+                <table class="table table-dark table-striped">
                     <thead class="table-dark">
                         <tr>
                             <th>
@@ -32,10 +32,11 @@
                         @endforeach
                     </tbody>
                 </table>
+                 <a href = "{{ URL :: to('/all-announcements') }}" class = "btn btn-primary">See All announcements</a>
             </div>
         </div>
     </div>
-      
-      <a href = "{{ URL :: to('/all-announcements') }}" class = "btn btn-primary">See All announcements</a>
     </div>
+     
+      
     @endsection

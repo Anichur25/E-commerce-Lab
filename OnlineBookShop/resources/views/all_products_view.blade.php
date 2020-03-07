@@ -1,70 +1,68 @@
 @extends('header')
-<link href="{{URL ::to('productStyle/product-style.css')}}" rel="stylesheet">
+<link href="{{URL ::to('productStyle/single-product.css')}}" rel="stylesheet">
 @section('body')
-
-<div class="container">
-
-    <br>
-    <h2>Available Products</h2>
-    <br>
-    <div class="row justify-content-end">
-        <div class="col-md-2 col-sm-6">
-            <div class="dropdown">
-                <button type="button"class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
-                    Sort By(Asce)
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ URL :: to('/products-by-name-asc') }}">Name</a>
-                    <a class="dropdown-item" href="{{ URL :: to('/products-by-price-asc') }}">Price</a>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-md-2 col-sm-6">
-            <div class="dropdown">
-                <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
-                    Sort By(desc)
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ URL :: to('/products-by-name-desc') }}">Name</a>
-                    <a class="dropdown-item" href="{{ URL :: to('/products-by-price-desc') }}">Price</a>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="row">
-        @foreach($products as $product)
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid4">
-                <div class="product-image4">
-                    <a href="#">
-                        <img class="pic-1" src="{{ $product -> book_image }}">
-                        <img class="pic-2" src="{{ $product -> book_image }}">
-                    </a>
-                    <ul class="social">
-                        <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                        <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                        <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
-
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">{{ $product -> book_name }}</a></h3>
-                    <h3 class="title">{{ $product -> book_author }}</h3>
-                    <div class="price">
-                        <p>Tk. {{ $product -> book_price }}</p>
-                    </div>
-                    <a class="add-to-cart" href="">ADD TO CART</a>
-                    <a class = "btn btn-info" href = "">View Details</a>
-                </div>
-            </div>
-        </div>
-        @endforeach
+<div class="body">
+    <div class="container-fluid">
         <br>
-    </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row justify-content-end">
+                    <form class="form-inline md-form mr-auto mb-4" method="POST" action="{{ url('/get-product-by-keyword') }}">
+                        {{ csrf_field() }}
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search product" name="product_name"
+                            aria-label="Search">
+                        <button class="btn btn-elegant btn-rounded btn-sm my-0" type="submit">Search</button>
+                    </form>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+                                Sort By(Asce)
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ URL :: to('/products-by-name-asc') }}">Name</a>
+                                <a class="dropdown-item" href="{{ URL :: to('/products-by-price-asc') }}">Price</a>
+                            </div>
+                        </div>
 
-    {{ $products -> links('vendor.pagination.bootstrap-4') }}
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+                                Sort By(desc)
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ URL :: to('/products-by-name-desc') }}">Name</a>
+                                <a class="dropdown-item" href="{{ URL :: to('/products-by-price-desc') }}">Price</a>
+
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+                <div class="row">
+                    @foreach($products as $book)
+                    <div class="col-md-3">
+                        <div class="card" style="width: 15rem;">
+                            <img src="{{ URL :: to($book -> book_image) }}" class="card-inside">
+                            <div class="book-info">
+                                <h5>{{ $book -> book_name }}</h5>
+                                <h6>{{ $book -> book_author }}</h6>
+                                <h6><span class="price">Tk. {{ $book -> book_price }}</span></h6>
+
+                            </div>
+                            <a class="btn btn-outline-success" href="{{ URL :: to('/show-product/'.$book -> book_id) }}">View details</a>
+                            <a class="btn btn-outline-warning" href=""><i class="fa fa-shopping-cart"></i>Add to
+                                Cart</a>
+                        </div>
+                    </div>
+                    <div style="margin-bottom : 520px"></div>
+                    @endforeach
+                </div>
+                {{ $products -> links('vendor.pagination.bootstrap-4') }}
+            </div>
+
+        </div>
+
+    </div>
 </div>
 @endsection

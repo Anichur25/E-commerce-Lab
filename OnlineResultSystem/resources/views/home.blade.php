@@ -23,6 +23,8 @@
 
     <link rel="shortcut icon" href="img/favicon.ico">
     <link rel = "stylesheet" href = "{{ asset('css/style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
 
 
@@ -90,18 +92,20 @@
                         <li>
                             <a class="dropmenu" href="#"><span class="hidden-tablet">Syllabus</span></a>
                             <ul>
-                                <li><a class="submenu" href="{{URL :: to('/add-product')}}"><span
+                                <li><a class="submenu" href="{{URL :: to('/add-course')}}"><span
                                             class="hidden-tablet">Add Course</span></a></li>
-                                <li><a class="submenu" href="{{URL :: to('/all-products')}}"><span
+                                <li><a class="submenu" href="{{URL :: to('/view-courses')}}"><span
+                                            class="hidden-tablet">View Courses</span></a></li>
+                                <li><a class="submenu" href="{{URL :: to('/add-syllabus')}}"><span
                                             class="hidden-tablet">Add Syllabus</span></a></li>
-                                <li><a class="submenu" href="{{URL :: to('/all-products')}}"><span
+                                <li><a class="submenu" href="{{URL :: to('/view-syllabuses')}}"><span
                                             class="hidden-tablet">View Syllabus</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <a class="dropmenu" href="#"><span class="hidden-tablet">Form Fill Up</span></a>
                             <ul>
-                                <li><a class="submenu" href="{{URL :: to('/add-product')}}"><span
+                                <li><a class="submenu" href="{{URL :: to('/form-fillup-regular')}}"><span
                                             class="hidden-tablet">Regular/Irregular</span></a></li>
                                 <li><a class="submenu" href="{{URL :: to('/all-products')}}"><span
                                             class="hidden-tablet">Improve</span></a></li>
@@ -110,7 +114,7 @@
                         <li>
                             <a class="dropmenu" href="#"><span class="hidden-tablet">Examination</span></a>
                             <ul>
-                                <li><a class="submenu" href="{{URL :: to('/add-product')}}"><span
+                                <li><a class="submenu" href="{{URL :: to('/add-marks')}}"><span
                                             class="hidden-tablet">Regular/Irregular</span></a></li>
                                 <li><a class="submenu" href="{{URL :: to('/all-products')}}"><span
                                             class="hidden-tablet">Improve</span></a></li>

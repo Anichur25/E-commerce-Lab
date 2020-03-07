@@ -70,7 +70,7 @@
 
                 @if(Session :: get('user_name') !== 'admin')
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                <a href="{{ URL :: to('/contact')}}" class="nav-link">
                         <i class="fas fa-envelope"></i>Contact Us</a>
                 </li>
                 @endif

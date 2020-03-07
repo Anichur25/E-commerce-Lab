@@ -7,7 +7,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h2 align="center">User Registration</h2>
+                        <h2 class ="text-center">User Registration</h2>
                     </div>
                     <div class="card-body">
                         <form action="{{ url('/register') }}" method="POST">

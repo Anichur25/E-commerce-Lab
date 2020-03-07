@@ -19,8 +19,8 @@ use Illuminate\Support\Str;
 $factory->define(App\Category::class, function (Faker $faker) {
     return [
         'category_name' => 'Programming',
-        'category_description' => 'Related in technology'
-        
+        'category_description' => 'Related to technology',
+       
     ];
 });
 

@@ -56,3 +56,11 @@ Route :: get('/products-by-name-asc','ProductController@asce_order_by_name');
 Route :: get('/products-by-price-asc','ProductController@asce_order_by_price');
 Route :: get('/products-by-name-desc','ProductController@desc_order_by_name');
 Route :: get('/products-by-price-desc','ProductController@desc_order_by_price');
+Route :: post('/get-product-by-keyword','ProductController@get_product_by_keyword');
+Route :: get('/show-product/{product_id}','ProductController@get_single_product');
+Route :: get('/products-by-keyword','ProductController@helper_function');
+
+
+
+Route :: get('/contact','MailSend@index');
+Route :: post('/send-email','MailSend@send_mail');
