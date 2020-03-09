@@ -32,8 +32,9 @@ class Place extends Controller
         $place_videos = DB :: table('spots_list')
                         ->join('spot_videos','spots_list.spot_id','=','spot_videos.spot_id')
                         ->where('spots_list.spot_id',$spot_id)
-                        ->get();              
+                        ->get();
+        $transportations = DB :: table('transportation') -> get();             
 
-        return view('place',['nearest_places' => $places,'nearest_restaurants' => $restaurants,'images' => $place_images,'videos' => $place_videos,'curr_place' => $current_place]);
+        return view('place',['nearest_places' => $places,'nearest_restaurants' => $restaurants,'images' => $place_images,'videos' => $place_videos,'curr_place' => $current_place,'transportations' => $transportations]);
     }
 }

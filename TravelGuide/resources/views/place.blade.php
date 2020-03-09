@@ -46,55 +46,23 @@
 
 <br>
 <div class="card">
-    <div class="card-header text-center">Transportation System</div>
     <div class="card-body">
-
-        <div class="row">
-
+        <div class="row" id  = "options">
             <div class="col-md-3">
-                <div class="card" style="width: 13rem;">
-                    <img class="card-img-top" height="140px" width="296px" src="/images/deshtravel.jpg"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Desh Travels</h5>
-                        <a href="http://www.deshtravelsbd.com/" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
+                <label>Transportation System :</label>
             </div>
-
-            <div class="col-md-3">
-                <div class="card" style="width: 13rem;">
-                    <img class="card-img-top" height="140px" width="296px" src="/images/brtc.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">B.R.T.C</h5>
-                        <a href="http://www.brtc.gov.bd/" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card" style="width: 13rem;">
-                    <img class="card-img-top" height="140px" width="296px" src="/images/grammentravel.jpg"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Grammen Travels</h5>
-                        <a href="http://www.grameentravelsbd.com/" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card" style="width: 13rem;">
-                    <img class="card-img-top" height="140px" width="296px" src="/images/shyamolitravel.jpg"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Shyamoli Paribahan</h5>
-                        <a href="http://www.shyamoliparibahan-bd.com/" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
+            <div class="col-md-2">
+             <div class="form-group">
+                    <select class="form-control">
+                    <option>Select One</option>
+                        <option>Bus</option>
+                        <option>Railway</option>
+                        <option>Aeroplane</option>
+                        <option>Others</option>
+                    </select>
+                </div>   
             </div>
         </div>
-
     </div>
 </div>
 
@@ -115,15 +83,15 @@
     </div>
     <div class="card-body">
         <div class="row">
-           
-           @foreach($videos as $video)
+
+            @foreach($videos as $video)
             <div class="col-md-6 image-content">
                 <iframe width="500" height="315" src="{{ URL :: to($video -> video_link) }}" frameborder="1"
                     allow="accelerometer;encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            
+
             @endforeach
-            
+
         </div>
     </div>
 </div>
@@ -138,34 +106,89 @@
 <script src="http://maps.google.com/maps/api/js"></script>
 <script src="{{asset('map/js/gmaps.js')}}"></script>
 <script>
-$(function() {
+$(document).ready(function(){
+    $("select.form-control").change(function(){
+        var selected = $(this).children("option:selected").val();
+        if(selected != 'Select One')
+        $('#selector').remove();
+        
+        if(selected == 'Bus')
+        {
+            var element = '<div class="row" id = "selector">' +
+            '@foreach($transportations as $trans)' + 
+            '<div class="col-md-3">' + 
+                '<div class="card" style="width: 13rem;">' +
+                    '<img class="card-img-top" height="140px" width="296px" src="{{ URL :: to($trans -> image_link) }}"' +
+                        'alt="Card image cap">' +
+                    '<div class="card-body">' +
+                        '<h5 class="card-title">{{ $trans -> title }}</h5>' +
+                        '<a href="{{ URL :: to($trans -> website) }}"target="_blank" class="btn btn-primary">View Details</a>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+            '@endforeach' +
+          '</div>'
 
+          $(element).insertAfter('#options')
+        }
+        else if(selected == 'Railway')
+        {
+         var element = '<div class="row" id = "selector">' +
+            '<div class="col-md-12">' + 
+                '<div class="card" style="width: 53rem;">' +
+                    '<img class="card-img-top" height="200px" width="296px" src="/images/railway.jpg"' +
+                        'alt="Card image cap">' +
+                    '<div class="card-body">' +
+                        '<h5 class="card-title">Bangladesh Railway</h5>' +
+                        '<a href="https://www.esheba.cnsbd.com/#/"target="_blank" class="btn btn-primary">View Details</a>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+          '</div>'
+          $(element).insertAfter('#options')
+        }
+        else if(selected == 'Aeroplane')
+        {
+            var element = '<div class="row" id = "selector">' +
+            '<div class="col-md-12">' + 
+                '<div class="card" style="width: 53rem;">' +
+                    '<img class="card-img-top" height="200px" width="296px" src="/images/airline.jpg"' +
+                        'alt="Card image cap">' +
+                    '<div class="card-body">' +
+                        '<h5 class="card-title">Bangladesh Airline</h5>' +
+                        '<a href="https://www.biman-airlines.com/"target="_blank" class="btn btn-primary">View Details</a>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+          '</div>'
+          $(element).insertAfter('#options')
+        }
+      
+    });
+});
+</script>
+<script>
+$(function() {
     places = new GMaps({
         div: '.nearest_places',
         lat: {{ $nearest_places[0] -> latitude }},
         lng: {{ $nearest_places[0] -> longitude }}
     });
-
     restaurant = new GMaps({
         div: '.nearest_restaurant',
         lat: {{ $nearest_restaurants[0] -> latitude }},  
         lng: {{ $nearest_restaurants[0] -> longitude }}
     });
-
     place_location = new GMaps({
-
         div: '.place_location',
         lat: {{ $curr_place -> spot_latitude }},
         lng: {{ $curr_place -> spot_longitude }}
     });
-
     place_location.addMarker({
-
         lat: {{ $curr_place -> spot_longitude }},
         lng: {{ $curr_place -> spot_longitude }},
         title: '{{ $curr_place -> spot_name }}'
     });
-
     @foreach($nearest_places as $nearest_place)
     places.addMarker({
         lat: {{$nearest_place -> latitude}},
@@ -173,7 +196,6 @@ $(function() {
         title: '{{ $nearest_place -> place_name }}'
     });
     @endforeach
-
     @foreach($nearest_restaurants as $nearest_restaurant)
     restaurant.addMarker({
         lat: {{ $nearest_restaurant -> latitude }},
@@ -181,7 +203,6 @@ $(function() {
         title: '{{ $nearest_restaurant -> restaurant_name }}'
     });
     @endforeach
-
 });
 </script>
 
