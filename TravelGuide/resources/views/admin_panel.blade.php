@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>Dashio - Bootstrap Admin Template</title>
+  <title>Admin Panel</title>
 
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
@@ -34,14 +34,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
      
-      <a href="index.html" class="logo"><b>Admin panel</b></a>
-    
-   
-      <div class="top-menu">
-        <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">Logout</a></li>
-        </ul>
-      </div>
+      <a href="{{ URL :: to('/admin') }}" class="logo"><b>Admin panel</b></a>
     </header>
     <!--header end-->
     <!-- **********************************************************************************************************************************************************
@@ -52,8 +45,6 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">Atique Rahman</h5>
           <li class="mt">
             <a class="active" href="index.html">
             

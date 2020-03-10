@@ -23,8 +23,8 @@
         </select>
       </div>
       <div class="form-group">
-        <label class="custom-file-label" for="customFile">Choose place virtual tour image</label>
-        <input type="file" class="custom-file-input" name = "spot_virtual_tour_image" required>
+        <label>Choose place virtual tour link</label>
+        <input type="text" class="form-control" name = "spot_virtual_tour_link" required>
       </div>
       
       <button type="submit" class="btn btn-primary">Add virtual tour</button>

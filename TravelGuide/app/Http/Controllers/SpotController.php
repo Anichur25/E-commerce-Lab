@@ -120,7 +120,7 @@ class SpotController extends Controller
                         ->join('virtual_tour','virtual_tour.spot_id','=','spots_list.spot_id')
                         ->where('spots_list.spot_id',$spot_id)
                         ->first();
-        return view('virtual_tour',['tour_content' => $tour_content]);
+        return Redirect :: to($tour_content -> tour_image);
     }
 
     public function add_virtual_tour()
@@ -132,25 +132,12 @@ class SpotController extends Controller
     {
         $tour_content = array();
         $tour_content['spot_id'] = $request -> ref_spot;
-        $image = $request ->file('spot_virtual_tour_image');
-
-        if($image)
-        {
-            $image_name = Str :: random(20);
-            $extension = strtolower($image -> getClientOriginalExtension());
-            $image_full_name = $image_name . '.' . $extension;
-            $upload_path = 'virtual_tour_image/';
-            $image_url = $upload_path.$image_full_name;
-            $success = $image -> move($upload_path,$image_full_name);
-
-            if($success)
-            {
-                $tour_content['tour_image'] = $image_url;
-                DB :: table('virtual_tour')->insert($tour_content);
+        $link= $request ->file('spot_virtual_tour_link');
+        $tour_content['tour_image'] = $request -> spot_virtual_tour_link;
+          DB :: table('virtual_tour')->insert($tour_content);
                 Session :: put('message','Record save successfully!!!');
-                return Redirect :: to('/add-spot-virtual-tour');
-            }
-        }
+                return Redirect :: to('/add-spot-virtual-tour');     
+        
     }
 
 }
