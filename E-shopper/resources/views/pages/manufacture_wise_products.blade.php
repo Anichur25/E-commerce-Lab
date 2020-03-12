@@ -11,14 +11,14 @@
                 <img src="{{URL :: to($product -> product_image)}}" alt="" />
                 <h2>${{ $product -> product_price }}</h2>
                 <p>{{ $product -> product_name }}</p>
-                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                <a href="{{ URL :: to('/view-product/'. $product -> product_id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
             </div>
             <div class="product-overlay">
                 <div class="overlay-content">
                 <img src="{{URL :: to($product -> product_image)}}" alt="" />
                     <h2>${{ $product -> product_price }}</h2>
                     <a href="{{ URL :: to('/view-product/'. $product -> product_id) }}"><p>{{ $product -> product_name }}</p></a>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                    <a href="{{ URL :: to('/view-product/'. $product -> product_id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                 </div>
             </div>
         </div>

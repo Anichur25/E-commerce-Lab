@@ -13,6 +13,9 @@ class CheckoutController extends Controller
     public function login_check()
     {
         Session :: put('hasSlider','no');
+        Session :: put('hasSidebar',null);
+        if(Session :: get('user_id') != NULL)
+         return Redirect :: to('/');
         return view('pages.login');
     }
 

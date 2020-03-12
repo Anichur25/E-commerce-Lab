@@ -98,7 +98,7 @@
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+                                <li><a href="{{ URL :: to('/login-check') }}"><i class="fa fa-user"></i> Account</a></li>
                                 <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                                 <li><a href="{{ URL :: to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a>
                                 </li>
@@ -251,7 +251,6 @@
 									$manufactures = DB :: table('manufactures')
 									->where('publication_status',1)
 									->get();
-
 									foreach($manufactures as $manufacture){
 										  $items = DB :: table('manufactures')
 													->where('manufacture_name',$manufacture->manufacture_name)

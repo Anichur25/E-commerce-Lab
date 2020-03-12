@@ -11,6 +11,7 @@ class HomeController extends Controller
     public function index()
     {
         Session :: put('hasSlider',null);
+        Session :: put('hasSidebar','yes');
         Session :: put('showFeatureItem','yes');
         $categories = DB :: table('categories')
                       ->where('publication_status',1)
