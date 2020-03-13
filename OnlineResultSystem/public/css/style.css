@@ -77,8 +77,10 @@ input.login-element
 
 #content
 {
-	background-color: rgb(236, 241, 238);
-}
+	
+	background-color: azure;
+}	
+
 .student_info_items_mark
 {
 	margin-left: 230px;

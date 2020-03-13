@@ -77,7 +77,7 @@
             <div id="sidebar-left" class="span2">
                 <div class="nav-collapse sidebar-nav">
                     <ul class="nav nav-tabs nav-stacked main-menu">
-                        <li><a href="{{URL :: to('/dashboard')}}"><span class="hidden-tablet">
+                        <li><a href="{{URL :: to('/')}}"><span class="hidden-tablet">
                                     Home</span></a></li>
                         @if(Session :: get('user_id'))
                         <li>
@@ -120,6 +120,8 @@
                                             class="hidden-tablet">Improve</span></a></li>
                             </ul>
                         </li>
+                        
+                        @endif
                         <li>
                             <a class="dropmenu" href="#"><span class="hidden-tablet">Result</span></a>
                             <ul>
@@ -133,12 +135,11 @@
                                             class="hidden-tablet">Individual Student Result</span></a></li>
                             </ul>
                         </li>
-                        @endif
 
-                        <li><a href="{{URL :: to('/all-category')}}"><span
+                        <li><a href="{{URL :: to('/about')}}"><span
                                     class="hidden-tablet">
                                     About</span></a></li>
-                        <li><a href="{{URL :: to('/add-category')}}"><span
+                        <li><a href="{{URL :: to('/contact-us')}}"><span
                                     class="hidden-tablet">Contact Us</span></a>
                         </li>
                     </ul>
