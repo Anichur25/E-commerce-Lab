@@ -122,6 +122,16 @@
                         </li>
                         <li>
                             <a class="dropmenu" href="#"><span class="hidden-tablet">Result</span></a>
+                            <ul>
+                                <li><a class="submenu" href="{{URL :: to('/yearly-result')}}"><span
+                                            class="hidden-tablet">Yearly Result</span></a></li>
+                                <li><a class="submenu" href="{{URL :: to('/semester-result')}}"><span
+                                            class="hidden-tablet">Semester Result</span></a></li>
+                                <li><a class="submenu" href="{{URL :: to('/individual-course-result')}}"><span
+                                            class="hidden-tablet">Individual Course Result</span></a></li>
+                                <li><a class="submenu" href="{{URL :: to('/individual-student-result')}}"><span
+                                            class="hidden-tablet">Individual Student Result</span></a></li>
+                            </ul>
                         </li>
                         @endif
 

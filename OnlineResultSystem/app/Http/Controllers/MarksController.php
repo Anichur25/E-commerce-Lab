@@ -7,6 +7,7 @@ use DB;
 use Session;
 use Redirect;
 use URL;
+use PDF;
 class MarksController extends Controller
 {
     public function get_academic_info()
@@ -143,6 +144,7 @@ class MarksController extends Controller
          $grade_point = 0.00;
         $student['grade_point'] = $grade_point;
         $student['cg'] = $grade_point *  Session :: get('course_credit');
+        $student['session'] = Session :: get('session');
         
         DB :: table('marksheets') -> insert($student);
         DB :: table('enrolled_courses')
@@ -157,5 +159,124 @@ class MarksController extends Controller
     {
         $all_results = DB :: table('marksheets') -> get();
         return view('view_marks',['all_results_info' => $all_results]);
+    }
+
+    public function semester_result()
+    {
+        $years = DB :: table('exam_year') -> get();
+        return view('semester_result',['years' => $years]);
+    }
+
+    public function calculate_result()
+    {
+        $result = array();
+        $total_credit_odd = DB :: table('marksheets')
+                            ->where('exam_year',2019)
+                            ->where('part',4)
+                            ->where('semester','odd')
+                            ->sum('course_credit');
+
+        $total_credit_even = DB :: table('marksheets')
+                            ->where('exam_year',2019)
+                            ->where('part',4)
+                            ->where('semester','even')
+                            ->sum('course_credit');
+
+        $total_cg_odd = DB :: table('marksheets')
+                        ->where('student_id','1610676125')
+                        ->where('exam_year',2019)
+                        ->where('part',4)
+                        ->where('semester','odd')
+                        ->sum('cg');
+        $total_cg_even = DB :: table('marksheets')
+                        ->where('student_id','1610676125')
+                        ->where('exam_year',2019)
+                        ->where('part',4)
+                        ->where('semester','even')
+                        ->sum('cg');
+        $ogpa = $total_cg_odd / $total_credit_odd;
+        $egpa = $total_cg_even / $total_credit_even;
+        $ygpa = round((($ogpa * $total_credit_odd) + ($egpa * $total_cg_even)) / ($total_credit_even + $total_cg_odd),2);
+        $result['student_id'] = '1610676125';
+        $result['odd_semester_gpa'] = round($ogpa,2);
+        $result['even_semester_gpa'] = round($egpa,2);
+        $result['yearly_gpa'] = $ygpa;
+
+        DB :: table('main_result') -> insert($result);
+    }
+
+    public function show_semester_result(Request $request)
+    {
+        $all_student_ids = DB :: table('marksheets')
+                   ->where('marksheets.part',$request -> part)
+                   ->where('marksheets.semester',$request -> semester)
+                   ->where('marksheets.exam_year',$request -> exam_year)
+                   ->select('marksheets.student_id','marksheets.part','marksheets.semester','marksheets.exam_year')
+                   ->distinct()
+                   ->get();
+             
+        
+        $courses = DB :: table('marksheets')
+                      ->where('marksheets.part',$request -> part)
+                      ->where('marksheets.semester',$request -> semester)
+                      ->where('marksheets.exam_year',$request -> exam_year)
+                      ->select('marksheets.course_code')
+                      ->get();              
+        return view('show_all_result_semester_wise',['courses' => $courses,'all_students' => $all_student_ids]);
+                    
+    }
+
+    public function individual_course_result()
+    {
+        $years = DB :: table('exam_year') -> get();
+        return view('individual_course_result',['years' => $years]);
+    }
+    public function show_course_result(Request $request)
+    {
+        $results = DB :: table('marksheets')
+                  ->where('part',$request -> part)
+                  ->where('semester',$request -> semester)
+                  ->where('exam_year',$request -> exam_year)
+                  ->where('course_code',$request -> course_code)
+                  ->get();
+            
+        if($results -> count() == 0)
+        {
+             Session :: put('found_status','please enter valid information!!!');
+             return Redirect :: to('/individual-course-result');
+        }
+         
+        return view('show_all_results_course_wise',['results' => $results]);
+    }
+
+    public function yearly_result()
+    {
+        return view('yearly_result');
+    }
+
+    public function show_yearly_result(Request $request)
+    {
+        $results = DB :: table('main_result')
+                  ->where('part',$request -> part)
+                  ->where('exam_year',$request -> exam_year)
+                  ->get();
+        if($results -> count() == 0)
+        {
+            Session :: put('found_status','please enter valid information!!!');
+            return Redirect :: to('/yearly-result'); 
+        }
+
+        return view('show_results_yearly',['results' => $results]);
+
+    }
+
+    public function individual_student_result()
+    {
+        return view('individual_result');
+    }
+
+    public function show_individual_result(Request $request)
+    {
+        
     }
 }
