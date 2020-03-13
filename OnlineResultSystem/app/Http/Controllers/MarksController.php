@@ -277,6 +277,16 @@ class MarksController extends Controller
 
     public function show_individual_result(Request $request)
     {
-        
+        $student_info = DB :: table('marksheets')
+                          ->join('main_result','marksheets.student_id','=','main_result.student_id')
+                          ->join('students','students.student_id','=','main_result.student_id')
+                          ->where('main_result.student_id',$request -> roll)
+                          ->where('main_result.part',$request -> part)
+                          ->where('main_result.exam_year',$request -> exam_year)
+                          ->where('marksheets.semester',$request -> semester)
+                          ->select('students.student_id','students.student_name','students.hall','students.session',
+                                    'marksheets.course_code','marksheets.grade_point','main_result.odd_semester_gpa','main_result.even_semester_gpa')
+                          ->get();
+       return view('show_individual_result',['student_info' => $student_info]);
     }
 }
