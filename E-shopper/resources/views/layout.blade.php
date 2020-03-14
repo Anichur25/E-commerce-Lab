@@ -14,10 +14,6 @@
     <link href="{{asset('frontend/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('frontend/css/main.css')}}" rel="stylesheet">
     <link href="{{asset('frontend/css/responsive.css')}}" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144"
         href="{{URL :: to('frontend/images/ico/apple-touch-icon-144-precomposed.png')}}">
@@ -37,15 +33,7 @@
             <!--header_top-->
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <div class="contactinfo">
-                            <ul class="nav nav-pills">
-                                <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                                <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <div class="social-icons pull-right">
                             <ul class="nav navbar-nav">
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -67,39 +55,14 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="index.html"><img src="{{URL :: to('frontend/images/home/logo.png')}}" alt="" /></a>
+                            <a href="{{ URL :: to('/') }}"><img src="{{URL :: to('frontend/images/home/logo.png')}}" alt="" /></a>
                         </div>
-                        <div class="btn-group pull-right">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle usa"
-                                    data-toggle="dropdown">
-                                    USA
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Canada</a></li>
-                                    <li><a href="#">UK</a></li>
-                                </ul>
-                            </div>
-
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle usa"
-                                    data-toggle="dropdown">
-                                    DOLLAR
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Canadian Dollar</a></li>
-                                    <li><a href="#">Pound</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
                                 <li><a href="{{ URL :: to('/login-check') }}"><i class="fa fa-user"></i> Account</a></li>
-                                <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                                 <li><a href="{{ URL :: to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a>
                                 </li>
                                 @if(Session :: get('user_id'))
@@ -150,8 +113,7 @@
                                 <li><a href="{{ URL :: to('/') }}" class="active">Home</a></li>
                                 <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-                                        <li><a href="product-details.html">Product Details</a></li>
+                                        <li><a href="{{ URL :: to('/') }}">Products</a></li>
                                         @if(Session :: get('user_name'))
                                         <li><a href="{{ URL :: to('/checkout') }}">Checkout</a></li>
                                         @else
@@ -160,20 +122,18 @@
                                         <li><a href="{{ URL :: to('/show-cart')}}">Cart</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="404.html">404</a></li>
                                 <li><a href="contact-us.html">Contact</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="search_box pull-right">
-                            <input type="text" placeholder="Search" />
+                           <form action = "{{ url('/search_by_keyword') }}" method = "post">
+                             {{ csrf_field() }}
+                            <input type="text" name = "keyword">
+                            <span><button class = "btn btn-primary">Search</button></button>
+                           </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -183,7 +143,7 @@
     </header>
     <!--/header-->
 
-    @if(Session :: get('hasSlider') == null)
+    @if(Session :: get('hasSlider') == 'yes')
     <section id="slider">
         <!--slider-->
         <div class="container">
@@ -200,7 +160,7 @@
                         <div class="carousel-inner" role="listbox">
                             @foreach( $all_slider as $slider )
                             <div class="item {{ $loop->first ? ' active' : '' }}">
-                                <img src="{{ $slider->slider_image }}" style="width: 100%; height: 300px;">
+                                <img src="{{ $slider->slider_image }}" style="width: 300px; height: 300px;">
                             </div>
                             @endforeach
                         </div>
@@ -219,7 +179,7 @@
     @endif
     <!--/slider-->
 
-    @if(Session :: get('hasSidebar') != null)
+    @if(Session :: get('hasSidebar') == 'yes')
     <section>
         <div class="container">
             <div class="row">
@@ -267,24 +227,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <!--/brands_products-->
-
-                        <div class="price-range">
-                            <!--price-range-->
-                            <h2>Price Range</h2>
-                            <div class="well text-center">
-                                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600"
-                                    data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
-                                <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
-                            </div>
-                        </div>
-                        <!--/price-range-->
-
-                        <div class="shipping text-center">
-                            <!--shipping-->
-                            <img src="{{URL :: to('frontend/images/home/shipping.jpg')}}" alt="" />
-                        </div>
-                        <!--/shipping-->
+                        
 
                     </div>
                 </div>
@@ -307,85 +250,7 @@
 
     <footer id="footer">
         <!--Footer-->
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div class="companyinfo">
-                            <h2><span>e</span>-shopper</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-7">
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <img src="{{URL :: to('frontend/images/home/iframe1.png')}}" alt="" />
-                                    </div>
-                                    <div class="overlay-icon">
-                                        <i class="fa fa-play-circle-o"></i>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <img src="{{URL :: to('frontend/images/home/iframe2.png')}}" alt="" />
-                                    </div>
-                                    <div class="overlay-icon">
-                                        <i class="fa fa-play-circle-o"></i>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <img src="{{URL :: to('frontend/images/home/iframe3.png')}}" alt="" />
-                                    </div>
-                                    <div class="overlay-icon">
-                                        <i class="fa fa-play-circle-o"></i>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <img src="{{URL :: to('frontend/images/home/iframe4.png')}}" alt="" />
-                                    </div>
-                                    <div class="overlay-icon">
-                                        <i class="fa fa-play-circle-o"></i>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="address">
-                            <img src="{{URL :: to('frontend/images/home/map.png')}}" alt="" />
-                            <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
 
         <div class="footer-widget">
             <div class="container">
@@ -454,15 +319,7 @@
             </div>
         </div>
 
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-                    <p class="pull-right">Designed by <span><a target="_blank"
-                                href="http://www.themeum.com">Themeum</a></span></p>
-                </div>
-            </div>
-        </div>
+       
 
     </footer>
     <!--/Footer-->

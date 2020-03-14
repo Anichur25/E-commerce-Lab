@@ -11,7 +11,8 @@ class CartController extends Controller
 {
     public function add_to_cart(Request $request)
     {
-        Session :: put('hasSidebar',null);
+        Session :: put('hasSidebar','no');
+        Session :: put('hasSlider','no');
         $qty = $request -> qty;
         $product_id = $request -> product_id;
 
@@ -32,6 +33,7 @@ class CartController extends Controller
 
     public function show_cart()
     {
+        Session :: put('hasSidebar','no');
         Session :: put('hasSlider','no');
          $categories = DB :: table('categories')
                           ->where('publication_status',1)

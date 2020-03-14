@@ -47,7 +47,7 @@ Route :: get('/unactive-product/{product_id}','ProductController@unactive_produc
 Route :: get('/active-product/{product_id}','ProductController@active_product');
 Route :: get('/delete-product/{product_id}','ProductController@delete_product');
 Route :: get('/edit-product/{product_id}','ProductController@edit_product');
-
+Route :: post('/search_by_keyword','ProductController@show_product_by_keyword');
 /** Slider routes */
 Route :: get('/add-slider','SliderController@add_slider');
 Route :: post('/save-slider','SliderController@save_slider');

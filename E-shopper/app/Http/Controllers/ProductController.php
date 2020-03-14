@@ -63,6 +63,7 @@ class ProductController extends Controller
         $all_products = DB :: table('products')
                         ->join('categories','products.category_id','=','categories.category_id')
                         ->join('manufactures','products.manufacture_id','=','manufactures.manufacture_id')
+                        ->where('products.publication_status',1)
                         ->select('products.*','categories.category_name','manufactures.manufacture_name')
                         ->get();
         return view('admin.all_products') -> with('all_products_info',$all_products);
@@ -112,5 +113,27 @@ class ProductController extends Controller
                         
         return view('admin.edit_product')->with('product_info',$product_info);
 
+    }
+
+    public function show_product_by_keyword(Request $request)
+    {
+        $keyword = $request -> keyword;
+        $all_products = DB :: table('products')
+                        ->join('categories','products.category_id','=','categories.category_id')
+                        ->join('manufactures','products.manufacture_id','=','manufactures.manufacture_id')
+                        ->where('products.product_name','like','%'.$keyword.'%')
+                        ->where('products.publication_status',1)
+                        ->select('products.*','categories.category_name','manufactures.manufacture_name')
+                        ->get();
+
+        $all_slider = DB :: table('slider')
+                        ->where('publication_status',1)
+                        ->get();
+
+        $categories = DB :: table('categories')
+                        ->where('publication_status',1)
+                        ->get();
+
+         return view('pages.home_content',['categories' => $categories,'all_products' => $all_products,'all_slider' => $all_slider]);
     }
 }
