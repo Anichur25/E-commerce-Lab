@@ -15,6 +15,7 @@ class ProductController extends Controller
     {
         $categories = DB :: table('categories')
         ->where('publication_status',1)
+        ->where('shop_name',Session :: get('user_name'))
         ->get();
        return view('admin.add_product') -> with('categories',$categories);
     }
@@ -31,6 +32,7 @@ class ProductController extends Controller
         $data['product_size'] = $request -> product_size;
         $data['product_color'] = $request -> product_color;
         $data['publication_status'] = $request -> publication_status;
+        $data['shop_name'] = Session :: get('user_name');
         
         $image = $request ->file('product_image');
 
@@ -63,8 +65,8 @@ class ProductController extends Controller
         $all_products = DB :: table('products')
                         ->join('categories','products.category_id','=','categories.category_id')
                         ->join('manufactures','products.manufacture_id','=','manufactures.manufacture_id')
-                        ->where('products.publication_status',1)
                         ->select('products.*','categories.category_name','manufactures.manufacture_name')
+                        ->where('products.shop_name',Session :: get('user_name'))
                         ->get();
         return view('admin.all_products') -> with('all_products_info',$all_products);
     }

@@ -19,7 +19,9 @@ class CategoryController extends Controller
     public function all_category()
     {
         $this -> adminAuthCheck();
-       $all_category_info =  DB :: table('categories')->get();
+       $all_category_info =  DB :: table('categories')
+                            ->where('shop_name',Session :: get('user_name'))
+                            ->get();
         
        return view('admin.all_category')
         ->with('all_category_info',$all_category_info);
@@ -32,6 +34,7 @@ class CategoryController extends Controller
         $data['category_name'] = $request -> category_name;
         $data['category_description'] = $request -> category_description;
         $data['publication_status'] = $request -> publication_status;
+        $data['shop_name'] = Session :: get('user_name');
 
         DB :: table('categories')->insert($data);
         Session :: put('message','Category added successfully !!');
@@ -83,13 +86,8 @@ class CategoryController extends Controller
 
     public function adminAuthCheck()
     {
-        $admin_id = Session :: get('admin_id');
-
-        if($admin_id)
-          return;
-        else
-        {
-            return Redirect :: to('/login') -> send();
-        }
+       if(Session :: get('user_name') != NULL && Session :: get('user_name') != 'U')
+        return;
+       else return Redirect :: to('/admin-login');
     }
 }

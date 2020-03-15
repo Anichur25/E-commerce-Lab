@@ -1,30 +1,22 @@
 @extends('admin.admin_layout')
 @section('dashboard_content')
-<ul class="breadcrumb">
-    <li>
-        <i class="icon-home"></i>
-        <a href="index.html">Home</a>
-        <i class="icon-angle-right"></i>
-    </li>
-    <li><a href="#">Tables</a></li>
-</ul>
+
 @if(Session :: get('message'))
-<p class = "alert-success">{{ Session :: get('message') }}</p>
+<p class = "alert alert-success">{{ Session :: get('message') }}</p>
 <?php Session :: put('message',null); ?>
 @endif
 <div class="row-fluid sortable">
     <div class="box span12">
         <div class="box-header" data-original-title>
-            <h2><i class="halflings-icon user"></i><span class="break"></span>Members</h2>
+            <h2><i class="halflings-icon user"></i><span class="break"></span>Products</h2>
             
         </div>
         <div class="box-content">
-            <table class="table table-striped table-bordered bootstrap-datatable datatable">
+            <table class="table table-striped table-bordered bootstrap-datatable">
                 <thead>
                     <tr>
-                        <th>Product ID</th>
+                       
                         <th>Product Name</th>
-                        
                         <th>Product Image</th>
                         <th>Product Price</th>
                         <th>Category Name</th>
@@ -37,7 +29,6 @@
                 @foreach($all_products_info as $product)
                 <tbody>
                     <tr>
-                        <td class = "center">{{ $product -> product_id }}</td>
                         <td class="center">{{ $product -> product_name }}</td>
                         <td class = "center"><img src = "{{ URL :: to($product -> product_image) }}" style = "width : 80px; height : 80px;">
                         <td class = "center"> {{ $product -> product_price }}</td>

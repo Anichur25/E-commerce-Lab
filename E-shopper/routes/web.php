@@ -13,9 +13,16 @@
 //admin related routes
 Route :: get('/logout','AuthController@logout');
 Route :: get('/','HomeController@index');
-Route :: get('/login','AuthController@login');
+Route :: get('/admin-signup','AuthController@admin_signup');
+Route :: get('/user-signup','AuthController@user_signup');
+Route :: post('/admin-registration','AuthController@admin_info_save');
+Route :: post('/user-registration','AuthController@user_info_save');
+Route :: get('/admin-login','AuthController@admin_login');
+Route :: get('/user-login','AuthController@user_login');
+Route :: post('/check-admin-auth','AuthController@check_auth_admin');
+Route :: post('/check-user-auth','AuthController@check_auth_user');
 Route :: get('/dashboard','AuthController@show_dashboard');
-Route :: post('/check-auth','AuthController@check_auth');
+
 
 /** category related routes */
 

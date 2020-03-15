@@ -18,6 +18,7 @@ class SliderController extends Controller
     {
         $data = array();
         $data['publication_status'] = $request -> publication_status;
+        $data['shop_name'] = Session :: get('user_name');
         
         $image = $request ->file('slider_image');
 
@@ -45,7 +46,9 @@ class SliderController extends Controller
 
     public function all_slider()
     {
-        $all_slider = DB :: table('slider') -> get();
+        $all_slider = DB :: table('slider')
+                       ->where('shop_name',Session :: get('user_name')) 
+                        -> get();
         return view('admin.all_slider',['all_slider' => $all_slider]);
     }
 

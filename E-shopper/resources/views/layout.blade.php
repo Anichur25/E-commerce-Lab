@@ -55,17 +55,43 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="{{ URL :: to('/') }}"><img src="{{URL :: to('frontend/images/home/logo.png')}}" alt="" /></a>
+                            <a href="{{ URL :: to('/') }}"><img src="{{URL :: to('frontend/images/home/logo.png')}}"
+                                    alt="" /></a>
                         </div>
-                        
+
                     </div>
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="{{ URL :: to('/login-check') }}"><i class="fa fa-user"></i> Account</a></li>
+                               @if(Session :: get('user_name') == NULL)
+                                <li class="dropdown">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="fa fa-lock"></i>
+                                        SignUp
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{URL :: to('/admin-signup')}}"><i class="halflings-icon off"></i>
+                                                As Admin</a></li>
+                                        <li><a href="{{URL :: to('/user-signup')}}"><i class="halflings-icon off"></i>
+                                                As User</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="fa fa-lock"></i>
+                                        Login
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{URL :: to('/admin-login')}}"><i class="halflings-icon off"></i>
+                                                As Admin</a></li>
+                                        <li><a href="{{URL :: to('/user-login')}}"><i class="halflings-icon off"></i>
+                                                As User</a></li>
+                                    </ul>
+                                </li>
                                 <li><a href="{{ URL :: to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a>
                                 </li>
-                                @if(Session :: get('user_id'))
+                                @endif 
+                                @if(Session :: get('user_name') != NULL)
                                 <li class="dropdown">
                                     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                                         <i class="halflings-icon white user"></i>
@@ -73,7 +99,7 @@
                                         <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        @if(Session :: get('user_type') == "A")
+                                        @if(Session :: get('user_type') != NULL && Session :: get('user_type') != 'U')
                                         <li><a href="{{URL :: to('/dashboard')}}"><i class="halflings-icon off"></i>
                                                 Admin Panel</a></li>
                                         @endif
@@ -81,11 +107,12 @@
                                                 Logout</a></li>
                                     </ul>
                                 </li>
-                                @else 
-                                 <li><a href="{{ URL :: to('/login-check') }}"><i class="fa fa-crosshairs"></i>
+                                 @endif
+                                @if(Session :: get('user_type') != 'A' &&  Session :: get('user_type') != 'S')
+                                <li><a href="{{ URL :: to('/checkout') }}"><i class="fa fa-crosshairs"></i>
                                         Checkout</a></li>
-                                 <li><a href = "{{ URL :: to('/login') }}"><i class = "fa fa-lock"></i>Login</a></li>
-                                @endif 
+                                <li><a href="{{ URL :: to('/show-cart')}}">Cart</a></li>
+                               @endif
                             </ul>
                         </div>
                     </div>
@@ -128,12 +155,12 @@
                     </div>
                     <div class="col-sm-2">
                         <div class="search_box pull-right">
-                           <form action = "{{ url('/search_by_keyword') }}" method = "post">
-                             {{ csrf_field() }}
-                            <input type="text" name = "keyword">
-                            <span><button class = "btn btn-primary">Search</button></button>
-                           </form>
-                            
+                            <form action="{{ url('/search_by_keyword') }}" method="post">
+                                {{ csrf_field() }}
+                                <input type="text" name="keyword">
+                                <span><button class="btn btn-primary">Search</button></button>
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -227,7 +254,7 @@
                                 </ul>
                             </div>
                         </div>
-                        
+
 
                     </div>
                 </div>
@@ -250,7 +277,7 @@
 
     <footer id="footer">
         <!--Footer-->
-       
+
 
         <div class="footer-widget">
             <div class="container">
@@ -319,7 +346,7 @@
             </div>
         </div>
 
-       
+
 
     </footer>
     <!--/Footer-->

@@ -61,6 +61,7 @@
                                 <?php
                                   $all_manufacture = DB :: table('manufactures')
                                                     ->where('publication_status',1)
+                                                    ->where('shop_name',Session :: get('user_name'))
                                                     ->get();
                                   foreach($all_manufacture as $manufacture){?>
                                        <option value = "{{ $manufacture -> manufacture_id }}"> {{ $manufacture -> manufacture_name }}</option>

@@ -10,37 +10,17 @@ use Cart;
 
 class CheckoutController extends Controller
 {
-    public function login_check()
-    {
-        Session :: put('hasSlider','no');
-        Session :: put('hasSidebar',null);
-        if(Session :: get('user_id') != NULL)
-         return Redirect :: to('/');
-        return view('pages.login');
-    }
-
-    public function customer_registration(Request $request)
-    {
-        $data = array();
-        $data['customer_name'] = $request -> name;
-        $data['customer_email'] = $request -> email;
-        $data['customer_password'] = $request -> password;
-        $data['mobile_number'] = $request -> mobile_number;
-        $customer_id = DB :: table('customers') -> insertGetId($data);
-        Session :: put('user_id',$customer_id);
-        Session :: put('user_name',$request -> name);
-        return Redirect :: to('/checkout');
-    }
-
+   
     public function checkout()
     {
         Session :: put('hasSlider','no');
-        if(Session :: get('user_id') && Session :: get('shipping_id') == NULL)
+        Session :: put('hasSidebar','no');
+        if(Session :: get('user_name') != NULL && Session :: get('shipping_id') == NULL)
         return view('pages.checkout');
-        else if(Session :: get('user_id') && Session :: get('shipping_id'))
+        else if(Session :: get('user_name') != NULL && Session :: get('shipping_id') != NULL)
          return Redirect :: to('/payment');
         else 
-         return Redirect :: to('/login-check');
+         return Redirect :: to('/user-login');
     }
 
     public function save_shipping_details(Request $request)

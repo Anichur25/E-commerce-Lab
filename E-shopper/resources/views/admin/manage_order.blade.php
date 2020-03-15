@@ -16,7 +16,7 @@
             
         </div>
         <div class="box-content">
-            <table class="table table-striped table-bordered bootstrap-datatable datatable">
+            <table class="table table-striped table-bordered bootstrap-datatable">
                 <thead>
                     <tr>
                         <th>Order Id</th>
