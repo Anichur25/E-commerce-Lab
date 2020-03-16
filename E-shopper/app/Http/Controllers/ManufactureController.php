@@ -20,7 +20,7 @@ class ManufactureController extends Controller
         $data['manufacture_name'] = $request -> manufacture_name;
         $data['manufacture_description'] = $request -> manufacture_description;
         $data['publication_status'] = $request -> publication_status;
-        $data['shop_name'] = Session :: get('user_name');
+        $data['shop_id'] = Session :: get('shop_id');
         
         DB :: table('manufactures')->insert($data);
         Session :: put('save_message','manufacture saved successfully !!');
@@ -30,7 +30,7 @@ class ManufactureController extends Controller
     public function all_manufacture()
     {
         $all_manufacture = DB :: table('manufactures')
-                       ->where('shop_name',Session :: get('user_name')) 
+                       ->where('shop_id',Session :: get('shop_id')) 
                        -> get();
         return view('admin.all_manufacture') -> with('all_manufacture_info',$all_manufacture);
     }

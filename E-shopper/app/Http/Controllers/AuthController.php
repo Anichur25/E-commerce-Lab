@@ -51,6 +51,7 @@ class AuthController extends Controller
         else
         {
             Session :: put('user_name',$result -> shop_name);
+            Session :: put('shop_id',$result -> shop_id);
             if($result -> admin_type == 0)
             Session :: put('user_type','A');
             else Session :: put('user_type','S');

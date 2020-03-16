@@ -13,22 +13,21 @@ class HomeController extends Controller
         Session :: put('hasSlider','yes');
         Session :: put('hasSidebar','yes');
         Session :: put('showFeatureItem','yes');
-        $categories = DB :: table('categories')
-                      ->where('publication_status',1)
-                      ->get();
+        
 
         $all_products = DB :: table('products')
                       ->join('categories','products.category_id','=','categories.category_id')
                       ->join('manufactures','products.manufacture_id','=','manufactures.manufacture_id')
+                      ->join('admins','admins.shop_id','=','products.shop_id')
                       ->where('products.publication_status',1)
-                      ->select('products.*','categories.category_name','manufactures.manufacture_name')
+                      ->select('products.*','categories.category_name','manufactures.manufacture_name','admins.shop_name')
                       
                       ->get();
         $all_slider = DB :: table('slider')
                      ->where('publication_status',1)
                      ->get();
 
-        return view('pages.home_content',['categories' => $categories,'all_products' => $all_products,'all_slider' => $all_slider]);
+        return view('pages.home_content',['all_products' => $all_products,'all_slider' => $all_slider]);
     }
 
     public function show_products_category_wise($category_id)
@@ -37,6 +36,7 @@ class HomeController extends Controller
         Session :: put('showFeatureItem','yes');
         $all_products = DB :: table('products')
                         ->join('categories','products.category_id','=','categories.category_id')
+                        ->join('admins','admins.shop_id','=','categories.shop_id')
                         ->where('products.category_id',$category_id)
                         ->where('products.publication_status',1)
                         ->get();
@@ -55,6 +55,7 @@ class HomeController extends Controller
         Session :: put('showFeatureItem','yes');
         $all_products = DB :: table('products')
         ->join('manufactures','manufactures.manufacture_id','=','products.manufacture_id')
+        ->join('admins','admins.shop_id','=','manufactures.shop_id')
         ->where('products.manufacture_id',$manufacture_id)
         ->where('products.publication_status',1)
         ->get();

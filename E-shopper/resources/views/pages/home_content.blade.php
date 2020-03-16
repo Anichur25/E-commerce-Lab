@@ -10,7 +10,8 @@
             <div class="productinfo text-center">
                 <img src="{{URL :: to($product -> product_image)}}" width = "200px" height = "280px">
                 <h2>{{ $product -> product_price }}Tk.</h2>
-                <p>{{ $product -> product_name }}</p>
+                <h5>{{ $product -> product_name }}</h5>
+                <h4>{{ $product -> shop_name  }}</h4>
                 <a href="{{ URL :: to('/view-product/'. $product -> product_id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
             </div>
             <div class="product-overlay">
@@ -78,7 +79,7 @@
                 <div class="product-image-wrapper">
                     <div class="single-products">
                         <div class="productinfo text-center">
-                            <img src="{{URL :: to($product -> product_image)}}">
+                            <img src="{{URL :: to($product -> product_image)}}"  width = "200px" height = "200px">
                             <h2>{{ $product -> product_price }}Tk.</h2>
                             <p>{{ $product -> product_name }}</p>
                             <a href="{{ URL :: to('/view-product/'. $product -> product_id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to
@@ -96,7 +97,7 @@
                 <div class="product-image-wrapper">
                     <div class="single-products">
                         <div class="productinfo text-center">
-                            <img src="{{URL :: to($product -> product_image)}}">
+                            <img src="{{URL :: to($product -> product_image)}}"  width = "200px" height = "280px">
                             <h2>{{ $product -> product_price }}Tk.</h2>
                             <p>{{ $product -> product_name }}</p>
                             <a href="{{ URL :: to('/view-product/'. $product -> product_id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to

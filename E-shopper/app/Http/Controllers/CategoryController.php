@@ -20,7 +20,7 @@ class CategoryController extends Controller
     {
         $this -> adminAuthCheck();
        $all_category_info =  DB :: table('categories')
-                            ->where('shop_name',Session :: get('user_name'))
+                            ->where('shop_id',Session :: get('shop_id'))
                             ->get();
         
        return view('admin.all_category')
@@ -34,7 +34,7 @@ class CategoryController extends Controller
         $data['category_name'] = $request -> category_name;
         $data['category_description'] = $request -> category_description;
         $data['publication_status'] = $request -> publication_status;
-        $data['shop_name'] = Session :: get('user_name');
+        $data['shop_id'] = Session :: get('shop_id');
 
         DB :: table('categories')->insert($data);
         Session :: put('message','Category added successfully !!');
@@ -86,7 +86,7 @@ class CategoryController extends Controller
 
     public function adminAuthCheck()
     {
-       if(Session :: get('user_name') != NULL && Session :: get('user_name') != 'U')
+       if(Session :: get('shop_id') != NULL && Session :: get('shop_id') != 'U')
         return;
        else return Redirect :: to('/admin-login');
     }

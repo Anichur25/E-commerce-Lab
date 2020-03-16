@@ -130,9 +130,9 @@
                         <li><a class="submenu" href="{{URL :: to('/all-products-view')}}">
                                 All Products</a></li>
 
-                        <li><a class="submenu" href="{{URL :: to('/all-products-view')}}">
+                        <li><a class="submenu" href="{{URL :: to('/all-shops-view')}}">
                                 All Shops</a></li>
-                        <li><a class="submenu" href="{{URL :: to('/all-products-view')}}">
+                        <li><a class="submenu" href="{{URL :: to('/all-users-view')}}">
                                 All Users</a></li>
                         <li><a href="{{ URL :: to('/manage-order') }}">
                                 Manager Order</a></li>

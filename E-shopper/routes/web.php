@@ -86,3 +86,12 @@ Route :: post('/complete-payment','CheckoutController@payment_gateway');
 Route :: get('/handcash','CheckoutController@handcash');
 Route :: get('/manage-order','CheckoutController@manage_order');
 Route :: get('/view-order/{order_id}','CheckoutController@view_order');
+
+/** Super Admin  */
+
+Route :: get('/all-categories','SuperAdminController@all_categories');
+Route :: get('/all-manufactures','SuperAdminController@all_manufactures');
+Route :: get('/all-products-view','SuperAdminController@all_products_view');
+Route :: get('/all-shops-view','SuperAdminController@all_shops');
+Route :: get('/delete-shop/{shop_id}','SuperAdminController@delete_shop');
+Route :: get('/all-users-view','SuperAdminController@all_users');

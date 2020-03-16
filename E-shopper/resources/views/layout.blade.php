@@ -214,13 +214,19 @@
                     <div class="left-sidebar">
                         <h2>Category</h2>
                         <div class="panel-group category-products" id="accordian">
-                            <!--category-productsr-->
+                            <?php 
+                            $categories = DB :: table('categories')
+                            ->join('admins','categories.shop_id','=','admins.shop_id')
+                            ->where('publication_status',1)
+                            ->select('categories.*','admins.shop_name')
+                            ->get();
+                            ?>
                             @foreach($categories as $category)
 
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title"><a
-                                            href="{{URL :: to('/show_category_products/'.$category -> category_id)}}">{{ $category->category_name }}</a>
+                                            href="{{URL :: to('/show_category_products/'.$category -> category_id)}}">{{ $category->category_name }}({{ $category -> shop_name }})</a>
                                     </h4>
                                 </div>
                             </div>
@@ -234,23 +240,25 @@
                             <h2>Brands</h2>
                             <div class="brands-name">
                                 <ul class="nav nav-pills nav-stacked">
-                                    <?php 
-									$manufactures = DB :: table('manufactures')
-									->where('publication_status',1)
-									->get();
-									foreach($manufactures as $manufacture){
-										  $items = DB :: table('manufactures')
-													->where('manufacture_name',$manufacture->manufacture_name)
-													->count();
-										?>
+                                   <?php 
+                                      $manufactures = DB :: table('manufactures')
+                                                           ->join('admins','admins.shop_id','=','manufactures.shop_id')
+                                                           ->where('publication_status',1)
+                                                           ->select('manufactures.*','admins.shop_name')
+                                                           ->get()
+                                   ?>
+
+                                   @foreach($manufactures as $manufacture)
+                                   <?php 
+                                     $items = DB :: table('products')
+                                              ->where('manufacture_id',$manufacture -> manufacture_id)
+                                              ->count();
+                                   ?>
                                     <li><a href="{{('/show_manufacture_products/'.$manufacture -> manufacture_id)}}">
                                             <span
-                                                class="pull-right">({{ $items }})</span>{{ $manufacture -> manufacture_name }}</a>
+                                                class="pull-right">({{ $items }})</span>{{ $manufacture -> manufacture_name }}({{ $manufacture -> shop_name }})</a>
                                     </li>
-                                    <?php }?>
-
-
-
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
